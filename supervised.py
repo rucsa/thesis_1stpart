@@ -3,10 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from sklearn import preprocessing, linear_model, metrics, svm
+from sklearn import preprocessing, linear_model, metrics, svm, neighbors, cross_validation
 from sklearn.neural_network import MLPClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import GradientBoostingRegressor
+
 
 ##### files for output
 f = open('output.txt', 'w').close()
@@ -29,19 +31,17 @@ mark_data = data[['raw beta on SPX market', 'adjusted beta', 'volatility 30 days
 output = data[['analyst rating']]
 all_int_data = data[['quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'P/E', 'EPS', 'market cap', 'total assets', 'number of employees', 'raw beta on SPX market', 'adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'analyst rating']]
 
+## mixed features for second experiment
 set1 = data [['operational cash flow', 'P/E', 'EPS', 'adjusted beta', 'return last 3 month']]
 set1.loc[:, 'operational cash flow'] = set1.loc[:,'operational cash flow'] / fund_data.loc[:,'market cap']
 set2 = data [['volatility 360 days', 'adjusted beta', 'returns last 6 months']]
 
-header = set1.columns.values
-print header.shape
-npArray = np.array(set1)
-npheader = np.array(header[1:-1])
-print("Array shape X = %d, Y = %d " % (npArray.shape))
-print (npArray)
-npArray = npArray.astype(float)
+set1 = set1.values
+set2 = set2.values
+output = output.values.ravel()
 
-output_en = np.asarray(output['analyst rating'].values, dtype="|S6")
+
+#output_en = np.asarray(output['analyst rating'].values, dtype="|S6")
 
 ##### create bins for output variable
 #bins = [1, 2,]
@@ -136,20 +136,32 @@ norm_fund = preprocessing.normalize(fund_data, norm='l2')
 #output_en = output['analyst rating'].values.ravel()
 
 
-# ordinary least squares ___Accuracy -0.02 on fund_data, 0.02 on market data (unscaled)
+# ordinary least squares ___Mean squared error = 0.28, R^2 = 0.01
 reg = linear_model.LinearRegression()
-# logistic regression ______Accuracy 0.07 on fund_data, 0.09 on market data (unscaled)
+# logistic regression ______Mean squared error = 0.31, R^2 = -0.07
 l_reg = linear_model.LogisticRegressionCV()
-# lasso ____________________Accuracy 0.04 on fund_data
-lss = linear_model.Lasso(alpha=0.1)
-# linear kernel SVM ________Running does not finish
-svm = svm.SVC(kernel='linear', C=1)
+# lasso ____________________Mean squared error = 0.28, R^2 = 0.01
+lss = linear_model.Lasso(alpha=1.0, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic')
+# linear SVR _______________Mean squared error = 0.38, R^2 = -0.34
+lsvr = svm.LinearSVR(epsilon=0.0, tol=0.0001, C=1.0, loss='squared_epsilon_insensitive', fit_intercept=True, intercept_scaling=1.0, dual=True, verbose=0, random_state=None, max_iter=1000)
+# SVR ______________________Mean squared error = 0.31, R^2 = -0.07
+svr = svm.SVR(kernel='rbf', degree=3, gamma='auto', coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, shrinking=True, cache_size=200, verbose=False, max_iter=-1)
+# NuSVR ____________________Mean squared error = 0.31, R^2 = -0.07
+nusvr = svm.NuSVR(nu=0.5, C=1.0, kernel='rbf', degree=3, gamma='auto', coef0=0.0, shrinking=True, tol=0.001, cache_size=200, verbose=False, max_iter=-1)
+# knn ______________________Mean squared error = 0.32, R^2 = -0.12
+knn = neighbors.KNeighborsRegressor(n_neighbors=5, weights='uniform', algorithm='auto', leaf_size=30)
+# decision tree ____________Mean squared error = 0.52, R^2 = -0.83
+tree = DecisionTreeRegressor(criterion='mse', splitter='best', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=False)
+# gradient tree boosting ___Mean squared error = 0.31, R^2 = -0.08
+gtb = GradientBoostingRegressor(loss='ls', learning_rate=0.1, n_estimators=100, subsample=1.0, criterion='friedman_mse', min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0, min_impurity_split=None, init=None, random_state=None, max_features=None, alpha=0.9, verbose=0, max_leaf_nodes=None, warm_start=False, presort='auto')
 
 # cross validation
-predicted = cross_val_score(reg, npArray, output_en, cv=5)
+predicted = cross_validation.cross_val_predict(gtb, set2, output, cv=5)
 
-#print("Accuracy: %0.2f (+/- %0.2f)" % (predicted.mean(), predicted.std() * 2))
-#print("Accuracy: " + metrics.accuracy_score(set1, predicted))
+print("Mean squared error: %0.2f" % (metrics.mean_squared_error(output, predicted)))
+print("Mean absolute error: %0.2f" % (metrics.mean_absolute_error(output, predicted)))
+print("R^2 coefficient: %0.2f" % (metrics.r2_score(output, predicted)))
+#print("Accuracy: " + metrics.accuracy_score(output, predicted))
 #print("Classification report \n")
 #print metrics.classification_report(output, predicted)
 
