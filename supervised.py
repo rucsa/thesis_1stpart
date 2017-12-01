@@ -9,7 +9,6 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 
-
 ##### files for output
 f = open('output.txt', 'w').close()
 f = open('output.txt', 'a')
@@ -36,31 +35,37 @@ set1 = data [['operational cash flow', 'P/E', 'EPS', 'adjusted beta', 'return la
 set1.loc[:, 'operational cash flow'] = set1.loc[:,'operational cash flow'] / fund_data.loc[:,'market cap']
 set2 = data [['volatility 360 days', 'adjusted beta', 'returns last 6 months']]
 
+# make arrays
 set1 = set1.values
 set2 = set2.values
 output = output.values.ravel()
-
-
 #output_en = np.asarray(output['analyst rating'].values, dtype="|S6")
 
+## TODO make separate script for classification with labelled Y
 ##### create bins for output variable
-#bins = [1, 2,]
+#bins = [0, 1, 2, 3, 4]
+#labels = [strong sell, sell, hold, buy, strong buy]
+# encode y for some classifiers
+#en = preprocessing.LabelEncoder()
+#en.fit(output.values)
+#output_en = output['analyst rating'].values.ravel()
 
 ##### visualize
-## TODO gradient boosting / random forrest
-
+## TODO random forrest
+## TODO move visualization to another file
+## TODO improve visualization: boxplots & their histograms, define outliers, add colors
 # styling of graphs
-colMap={0:"red", 1:"blue", 2:"yellow", 3:"green", 4:"blue", 5:"white", 6:"black", 7:"brown", 8:"pink"}
+#colMap={0:"red", 1:"blue", 2:"yellow", 3:"green", 4:"blue", 5:"white", 6:"black", 7:"brown", 8:"pink"}
 #plt.style.use('ggplot')
 
-# individual histograms
+# histograms
 #fund_data.hist()
 #plt.show()
 ## DATA NOTES: data above is very skewed to the left
+
 #mark_data.hist()
 #plt.show()
 ## DATA NOTES: data fairly even distributed, exceptions skewed to the left: volatility 30 days, 90 days, 360 days, return 5 years, returns last year
-
 
 #pp = sns.pairplot(all_int_data, x_vars = ['quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'P/E', 'EPS', 'market cap', 'total assets', 'number of employees', 'raw beta on SPX market', 'adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years'], y_vars = ["analyst rating"])
 #plt.show()
@@ -130,45 +135,46 @@ norm_fund = preprocessing.normalize(fund_data, norm='l2')
 
 ##### classify
 
-# encode y for some classifiers
-#en = preprocessing.LabelEncoder()
-#en.fit(output.values)
-#output_en = output['analyst rating'].values.ravel()
-
-
 # ordinary least squares ___Mean squared error = 0.28, R^2 = 0.01
 reg = linear_model.LinearRegression()
+
 # logistic regression ______Mean squared error = 0.31, R^2 = -0.07
 l_reg = linear_model.LogisticRegressionCV()
+
 # lasso ____________________Mean squared error = 0.28, R^2 = 0.01
 lss = linear_model.Lasso(alpha=1.0, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic')
+
 # linear SVR _______________Mean squared error = 0.38, R^2 = -0.34
 lsvr = svm.LinearSVR(epsilon=0.0, tol=0.0001, C=1.0, loss='squared_epsilon_insensitive', fit_intercept=True, intercept_scaling=1.0, dual=True, verbose=0, random_state=None, max_iter=1000)
+
 # SVR ______________________Mean squared error = 0.31, R^2 = -0.07
 svr = svm.SVR(kernel='rbf', degree=3, gamma='auto', coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, shrinking=True, cache_size=200, verbose=False, max_iter=-1)
+
 # NuSVR ____________________Mean squared error = 0.31, R^2 = -0.07
 nusvr = svm.NuSVR(nu=0.5, C=1.0, kernel='rbf', degree=3, gamma='auto', coef0=0.0, shrinking=True, tol=0.001, cache_size=200, verbose=False, max_iter=-1)
+
 # knn ______________________Mean squared error = 0.32, R^2 = -0.12
 knn = neighbors.KNeighborsRegressor(n_neighbors=5, weights='uniform', algorithm='auto', leaf_size=30)
+
 # decision tree ____________Mean squared error = 0.52, R^2 = -0.83
 tree = DecisionTreeRegressor(criterion='mse', splitter='best', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=False)
+
 # gradient tree boosting ___Mean squared error = 0.31, R^2 = -0.08
 gtb = GradientBoostingRegressor(loss='ls', learning_rate=0.1, n_estimators=100, subsample=1.0, criterion='friedman_mse', min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0, min_impurity_split=None, init=None, random_state=None, max_features=None, alpha=0.9, verbose=0, max_leaf_nodes=None, warm_start=False, presort='auto')
 
+
 # cross validation
 predicted = cross_validation.cross_val_predict(gtb, set2, output, cv=5)
-
 print("Mean squared error: %0.2f" % (metrics.mean_squared_error(output, predicted)))
 print("Mean absolute error: %0.2f" % (metrics.mean_absolute_error(output, predicted)))
 print("R^2 coefficient: %0.2f" % (metrics.r2_score(output, predicted)))
+
+# TODO split, train, predict, validate
 #print("Accuracy: " + metrics.accuracy_score(output, predicted))
 #print("Classification report \n")
 #print metrics.classification_report(output, predicted)
-
 #clf = MLPClassifier (solver='lbfgs', alpha = 1e-5, hidden_layer_sizes=(2,2), random_state=1)
 #clf.fit(mark_data, y)
-
 #out = clf.predict ([[1, 10, 63915, 55689, 24733, 20196, 31, 2],[0,	2, 59387, 50209, 5400, 8222, 21, 6]] )
-
 #print(out)
 
