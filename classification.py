@@ -8,6 +8,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn import tree
 
 
 f = open('classes.txt', 'w').close()
@@ -60,13 +61,19 @@ f.write ('LEGEND: \n 0-1:A (strong sell) \n 1-2:B (sell) \n 2-3:C (hold) \n 3-4:
 for i in xrange(1,len(output)):
 	f.write(str(output[i]) + '      ' + str(outputLabels[i]) + '\n')
 
-# classify & validate
+#### classify
 
-# linear SVC _______________Mean squared error = 0.38, R^2 = -0.34
+# linear SVC __________________________________________________________Accuracy = 0.45, Precision = 0.25, Recall = 0.24
 lsvr = svm.LinearSVC(penalty='l2', loss='squared_hinge', dual=True, tol=0.0001, C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1, class_weight=None, verbose=0, random_state=None, max_iter=1000)
 
-predicted = cross_validation.cross_val_predict(lsvr, set2, outputLabels, cv=10)
+# Stochastic Gradient Descent with one-vs-all multiclassification _____Accuracy = 0.47, Precision = 0.26, Recall = 0.26
+sgdc = linear_model.SGDClassifier(loss='perceptron', penalty='l2', alpha=0.0001, l1_ratio=0.15, fit_intercept=True, max_iter=None, tol=None, shuffle=True, verbose=0, epsilon=0.1, n_jobs=1, random_state=None, learning_rate='optimal', eta0=0.0, power_t=0.5, class_weight=None, warm_start=False, average=False, n_iter=None)
 
+# Multi class decision tree  __________________________________________Accuracy = 0.47, Precision = 0.28, Recall = 0.29
+dtc = tree.DecisionTreeClassifier(criterion='gini', splitter='best', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, class_weight=None, presort=False)
+
+#### validate
+predicted = cross_validation.cross_val_predict(dtc, set2, outputLabels, cv=10)
 print("Accuracy: %0.2f" % (metrics.accuracy_score(outputLabels, predicted)))
 print("Precision: %0.2f" % (metrics.precision_score(outputLabels, predicted, average='macro', sample_weight=None)))
 print("Recall: %0.2f" % (metrics.recall_score(outputLabels, predicted, average='macro', sample_weight=None)))
