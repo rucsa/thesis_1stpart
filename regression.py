@@ -134,7 +134,7 @@ norm_fund = preprocessing.normalize(fund_data, norm='l2')
 #output = output.values.ravel()
 
 ##### classify
-
+## made with 5 folds, with 10 results are better
 # ordinary least squares ___Mean squared error = 0.28, R^2 = 0.01
 reg = linear_model.LinearRegression()
 
@@ -164,10 +164,19 @@ gtb = GradientBoostingRegressor(loss='ls', learning_rate=0.1, n_estimators=100, 
 
 
 # cross validation
-predicted = cross_validation.cross_val_predict(gtb, set2, output, cv=5)
+# takes care of splitting data
+predicted = cross_validation.cross_val_predict(gtb, set2, output, cv=10)
 print("Mean squared error: %0.2f" % (metrics.mean_squared_error(output, predicted)))
 print("Mean absolute error: %0.2f" % (metrics.mean_absolute_error(output, predicted)))
 print("R^2 coefficient: %0.2f" % (metrics.r2_score(output, predicted)))
+
+
+fig, ax = plt.subplots()
+ax.scatter(output, predicted, edgecolors=(0, 0, 0))
+ax.plot([output.min(), output.max()], [output.min(), output.max()], 'k--', lw=4)
+ax.set_xlabel('Measured')
+ax.set_ylabel('Predicted')
+plt.show()
 
 # TODO split, train, predict, validate
 #print("Accuracy: " + metrics.accuracy_score(output, predicted))
