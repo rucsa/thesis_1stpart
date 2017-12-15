@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 from sklearn import preprocessing, linear_model, metrics, svm, neighbors, cross_validation
-from sklearn.neural_network import MLPClassifier
+from sklearn.neural_network import MLPRegressor
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
@@ -14,7 +14,7 @@ f = open('output.txt', 'w').close()
 f = open('output.txt', 'a')
 
 ##### upload data
-data = pd.read_csv("model_data.csv", sep=';', header = 0);
+data = pd.read_csv('../Data/model_data.csv', sep=';', header = 0);
 
 ##### clean
 data = data.replace({'%':''}, regex=True);
@@ -31,13 +31,18 @@ output = data[['analyst rating']]
 all_int_data = data[['quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'P/E', 'EPS', 'market cap', 'total assets', 'number of employees', 'raw beta on SPX market', 'adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'analyst rating']]
 
 ## mixed features for second experiment
+# eps redundant information
 set1 = data [['operational cash flow', 'P/E', 'EPS', 'adjusted beta', 'return last 3 month']]
 set1.loc[:, 'operational cash flow'] = set1.loc[:,'operational cash flow'] / fund_data.loc[:,'market cap']
 set2 = data [['volatility 360 days', 'adjusted beta', 'returns last 6 months']]
+set3 = data [['P/E', 'adjusted beta', 'returns last 6 months', 'volatility 360 days' ]]
+set4 = data [['EPS', 'adjusted beta', 'returns last 6 months', 'volatility 360 days' ]]
 
 # make arrays
 set1 = set1.values
 set2 = set2.values
+set3 = set3.values
+set4 = set4.values
 output = output.values.ravel()
 #output_en = np.asarray(output['analyst rating'].values, dtype="|S6")
 
@@ -67,8 +72,8 @@ output = output.values.ravel()
 #plt.show()
 ## DATA NOTES: data fairly even distributed, exceptions skewed to the left: volatility 30 days, 90 days, 360 days, return 5 years, returns last year
 
-#pp = sns.pairplot(all_int_data, x_vars = ['quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'P/E', 'EPS', 'market cap', 'total assets', 'number of employees', 'raw beta on SPX market', 'adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years'], y_vars = ["analyst rating"])
-#plt.show()
+pp = sns.pairplot(all_int_data, x_vars = ['quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'P/E', 'EPS', 'market cap', 'total assets', 'number of employees', 'raw beta on SPX market', 'adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years'], y_vars = ["analyst rating"])
+plt.show()
 
 ##### preprocessing
 
@@ -91,7 +96,7 @@ fund_data.loc[:, 'operational cash flow'] = fund_data.loc[:,'operational cash fl
 #print(output.head())
 
 # scatter matrix ## correlation with buy/hold/sell advice on y axis
-#pd.plotting.scatter_matrix(fund_data, alpha=0.7, diagonal = 'hist', figsize=[8,8], s=100)
+#pd.plotting.scatter_matrix(mark_data, alpha=0.7, diagonal = 'hist', figsize=[8,8], s=100)
 #plt.show()
 #pd.plotting.scatter_matrix(mark_data, alpha=0.7, diagonal = 'hist', figsize=[8,8], s=100)
 #plt.show()
@@ -162,10 +167,12 @@ tree = DecisionTreeRegressor(criterion='mse', splitter='best', max_depth=None, m
 # gradient tree boosting ___Mean squared error = 0.31, R^2 = -0.08
 gtb = GradientBoostingRegressor(loss='ls', learning_rate=0.1, n_estimators=100, subsample=1.0, criterion='friedman_mse', min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0, min_impurity_split=None, init=None, random_state=None, max_features=None, alpha=0.9, verbose=0, max_leaf_nodes=None, warm_start=False, presort='auto')
 
+# multi-layer perceptron regressor
+mpr = MLPRegressor(hidden_layer_sizes=(5, 4), activation='tanh', solver='lbfgs', alpha=0.4, batch_size='auto', learning_rate='adaptive', learning_rate_init=0.01, power_t=0.5, max_iter=200, shuffle=False, random_state=None, tol=0.0001, verbose=True, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
 
 # cross validation
 # takes care of splitting data
-predicted = cross_validation.cross_val_predict(gtb, set2, output, cv=10)
+predicted = cross_validation.cross_val_predict(mpr, set4, output, cv=10)
 print("Mean squared error: %0.2f" % (metrics.mean_squared_error(output, predicted)))
 print("Mean absolute error: %0.2f" % (metrics.mean_absolute_error(output, predicted)))
 print("R^2 coefficient: %0.2f" % (metrics.r2_score(output, predicted)))

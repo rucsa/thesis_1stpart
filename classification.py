@@ -2,20 +2,25 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from bisect import bisect
+from sklearn.neural_network import MLPClassifier
 
 from sklearn import preprocessing, linear_model, metrics, svm, neighbors, cross_validation
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import GradientBoostingRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn import tree
+from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.ensemble import GradientBoostingClassifier
 
 
 f = open('classes.txt', 'w').close()
 f = open('classes.txt', 'a')
 
 ##### upload data
-data = pd.read_csv("model_data.csv", sep=';', header = 0);
+data = pd.read_csv('../Data/model_data.csv', sep=';', header = 0);
 
 ##### clean
 data = data.replace({'%':''}, regex=True);
@@ -35,6 +40,8 @@ allData = data[['quick ratio', 'inventory turnover', 'sale ravenue turnover', 'g
 set1 = data [['operational cash flow', 'P/E', 'EPS', 'adjusted beta', 'return last 3 month']]
 set1.loc[:, 'operational cash flow'] = set1.loc[:,'operational cash flow'] / fundamentalData.loc[:,'market cap']
 set2 = data [['volatility 360 days', 'adjusted beta', 'returns last 6 months']]
+set3 = data [['P/E', 'adjusted beta', 'returns last 6 months', 'volatility 360 days' ]]
+set4 = data [['EPS', 'adjusted beta', 'returns last 6 months', 'volatility 360 days' ]]
 
 # make arrays
 fundamentalData.values
@@ -42,11 +49,13 @@ marketData.values
 allData.values
 set1 = set1.values
 set2 = set2.values
+set3 = set3.values
+set4 = set4.values
 output = output.values.ravel()
 
 # split data into bins
 ### with bisect
-labels = ['strong see', 'sell', 'hold', 'buy', 'strong buy', 'very strong buy']
+labels = ['strong sell', 'sell', 'hold', 'buy', 'strong buy', 'very strong buy']
 breakpoints = [1, 2, 3, 4, 5]
 def label(total):
 	return labels[bisect(breakpoints, total)]
@@ -62,6 +71,8 @@ for i in xrange(1,len(output)):
 	f.write(str(output[i]) + '      ' + str(outputLabels[i]) + '\n')
 
 #### classify
+# ordinary least squares
+ols = LinearRegression(fit_intercept=True, normalize=False, copy_X=True, n_jobs=1)
 
 # linear SVC __________________________________________________________Accuracy = 0.45, Precision = 0.25, Recall = 0.24
 lsvr = svm.LinearSVC(penalty='l2', loss='squared_hinge', dual=True, tol=0.0001, C=1.0, multi_class='ovr', fit_intercept=True, intercept_scaling=1, class_weight=None, verbose=0, random_state=None, max_iter=1000)
@@ -72,8 +83,19 @@ sgdc = linear_model.SGDClassifier(loss='perceptron', penalty='l2', alpha=0.0001,
 # Multi class decision tree  __________________________________________Accuracy = 0.47, Precision = 0.28, Recall = 0.29
 dtc = tree.DecisionTreeClassifier(criterion='gini', splitter='best', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, class_weight=None, presort=False)
 
+# gaussian process classifier - multiclass one_vs_rest
+gpc = GaussianProcessClassifier(kernel=None, optimizer='fmin_l_bfgs_b', n_restarts_optimizer=0, max_iter_predict=100, warm_start=False, copy_X_train=True, random_state=None, multi_class='one_vs_rest', n_jobs=1)
+
+# multinomial native bayes - input has negative values
+mnb = MultinomialNB(alpha=1.0, fit_prior=True, class_prior=None)
+
+# gradient boosting classifier
+gbc = GradientBoostingClassifier(loss='deviance', learning_rate=0.1, n_estimators=100, subsample=1.0, criterion='friedman_mse', min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0, min_impurity_split=None, init=None, random_state=None, max_features=None, verbose=0, max_leaf_nodes=None, warm_start=False, presort='auto')
+
+# multi layer perceptron
+mlp = MLPClassifier(hidden_layer_sizes=(5,7), activation='relu', solver='adam', alpha=0.0001, batch_size='auto', learning_rate='constant', learning_rate_init=0.001, power_t=0.5, max_iter=200, shuffle=True, random_state=None, tol=0.0001, verbose=False, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
 #### validate
-predicted = cross_validation.cross_val_predict(dtc, set2, outputLabels, cv=10)
+predicted = cross_validation.cross_val_predict(mlp, set3, outputLabels, cv=4)
 print("Accuracy: %0.2f" % (metrics.accuracy_score(outputLabels, predicted)))
 print("Precision: %0.2f" % (metrics.precision_score(outputLabels, predicted, average='macro', sample_weight=None)))
 print("Recall: %0.2f" % (metrics.recall_score(outputLabels, predicted, average='macro', sample_weight=None)))
