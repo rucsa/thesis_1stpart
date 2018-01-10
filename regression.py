@@ -46,7 +46,6 @@ set4 = set4.values
 output = output.values.ravel()
 #output_en = np.asarray(output['analyst rating'].values, dtype="|S6")
 
-## TODO make separate script for classification with labelled Y
 ##### create bins for output variable
 #bins = [0, 1, 2, 3, 4]
 #labels = [strong sell, sell, hold, buy, strong buy]
@@ -73,11 +72,11 @@ output = output.values.ravel()
 ## DATA NOTES: data fairly even distributed, exceptions skewed to the left: volatility 30 days, 90 days, 360 days, return 5 years, returns last year
 
 pp = sns.pairplot(all_int_data, x_vars = ['quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'P/E', 'EPS', 'market cap', 'total assets', 'number of employees', 'raw beta on SPX market', 'adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years'], y_vars = ["analyst rating"])
-plt.show()
+#plt.show()
 
 ##### preprocessing
 
-### make market data relative to company size
+### make fundamental data relative to company size
 fund_data.loc[:, 'market cap'] = fund_data.loc[:, 'market cap'] / 1000 # express in billions
 fund_data.loc[:, 'total assets'] = fund_data.loc[:, 'total assets'] / 1000 # express in billions
 fund_data.loc[:, 'inventory turnover'] = fund_data.loc[:, 'inventory turnover'] / fund_data.loc[:, 'market cap']
@@ -140,39 +139,83 @@ norm_fund = preprocessing.normalize(fund_data, norm='l2')
 
 ##### classify
 ## made with 5 folds, with 10 results are better
-# ordinary least squares ___Mean squared error = 0.28, R^2 = 0.01
+# ordinary least squares ___Mean squared error = 0.28, Mean absolute error = 0.44, R^2 = 0.01
+# ___________________set2___Mean squared error = 0.28, Mean absolute error = 0.44, R^2 = 0.01
+# ___________________set3___Mean squared error = 0.28, Mean absolute error = 0.44, R^2 = 0.02
+# ___________________set4___Mean squared error = 0.28, Mean absolute error = 0.44, R^2 = 0.01
+# __________________funds___Mean squared error = 0.29, Mean absolute error = 0.43, R^2 = 0.00
+# __________________marks___Mean squared error = 0.28, Mean absolute error = 0.43, R^2 = 0.04
 reg = linear_model.LinearRegression()
 
-# logistic regression ______Mean squared error = 0.31, R^2 = -0.07
-l_reg = linear_model.LogisticRegressionCV()
-
-# lasso ____________________Mean squared error = 0.28, R^2 = 0.01
+# lasso _____________set1___Mean squared error = 0.29, Mean absolute error = 0.44, R^2 = -0.01
+# ___________________set2___Mean squared error = 0.28, Mean absolute error = 0.44, R^2 = 0.01
+# ___________________set3___Mean squared error = 0.29, Mean absolute error = 0.44, R^2 = 0.00
+# ___________________set4___Mean squared error = 0.28, Mean absolute error = 0.44, R^2 = 0.01
+# __________________funds___Mean squared error = 0.27, Mean absolute error = 0.43, R^2 = 0.05
+# __________________marks___Mean squared error = 0.27, Mean absolute error = 0.43, R^2 = 0.06
 lss = linear_model.Lasso(alpha=1.0, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic')
 
-# linear SVR _______________Mean squared error = 0.38, R^2 = -0.34
+# linear SVR ________set1___Mean squared error = 0.46, Mean absolute error = 0.52, R^2 = -0.62
+# ___________________set2___Mean squared error = 0.39, Mean absolute error = 0.49, R^2 = -0.36
+# ___________________set3___Mean squared error = 0.70, Mean absolute error = 0.66, R^2 = -1.44
+# ___________________set4___Mean squared error = 0.36, Mean absolute error = 0.48, R^2 = -0.27
+# __________________funds___Mean squared error = 97.56, Mean absolute error = 3.83, R^2 = -339.46
+# __________________marks___Mean squared error = 0.61, Mean absolute error = 0.62, R^2 = -1.14
 lsvr = svm.LinearSVR(epsilon=0.0, tol=0.0001, C=1.0, loss='squared_epsilon_insensitive', fit_intercept=True, intercept_scaling=1.0, dual=True, verbose=0, random_state=None, max_iter=1000)
 
-# SVR ______________________Mean squared error = 0.31, R^2 = -0.07
+# SVR _______________set1___Mean squared error = 0.30, Mean absolute error = 0.44, R^2 = -0.05
+# ___________________set2___Mean squared error = 0.31, Mean absolute error = 0.46, R^2 = -0.09
+# ___________________set3___Mean squared error = 0.30, Mean absolute error = 0.45, R^2 = -0.05
+# ___________________set4___Mean squared error = 0.30, Mean absolute error = 0.45, R^2 = -0.05
+# __________________funds___Mean squared error = 0.29, Mean absolute error = 0.44, R^2 = -0.00
+# __________________marks___Mean squared error = 0.29, Mean absolute error = 0.44, R^2 = 0.00
 svr = svm.SVR(kernel='rbf', degree=3, gamma='auto', coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, shrinking=True, cache_size=200, verbose=False, max_iter=-1)
 
-# NuSVR ____________________Mean squared error = 0.31, R^2 = -0.07
+# NuSVR _____________set1___Mean squared error = 0.30, Mean absolute error = 0.44, R^2 = -0.06
+# ___________________set2___Mean squared error = 0.32, Mean absolute error = 0.46, R^2 = -0.10
+# ___________________set3___Mean squared error = 0.30, Mean absolute error = 0.45, R^2 = -0.06
+# ___________________set4___Mean squared error = 0.31, Mean absolute error = 0.45, R^2 = -0.06
+# __________________funds___Mean squared error = 0.29, Mean absolute error = 0.44, R^2 = -0.00
+# __________________marks___Mean squared error = 0.29, Mean absolute error = 0.44, R^2 = 0.00
 nusvr = svm.NuSVR(nu=0.5, C=1.0, kernel='rbf', degree=3, gamma='auto', coef0=0.0, shrinking=True, tol=0.001, cache_size=200, verbose=False, max_iter=-1)
 
-# knn ______________________Mean squared error = 0.32, R^2 = -0.12
+# knn _______________set1___Mean squared error = 0.34, Mean absolute error = 0.46, R^2 = -0.17
+# ___________________set2___Mean squared error = 0.32, Mean absolute error = 0.46, R^2 = -0.11
+# ___________________set3___Mean squared error = 0.35, Mean absolute error = 0.47, R^2 = -0.23
+# ___________________set4___Mean squared error = 0.32, Mean absolute error = 0.46, R^2 = -0.12
+# __________________funds___Mean squared error = 0.33, Mean absolute error = 0.46, R^2 = -0.16
+# __________________marks___Mean squared error = 0.31, Mean absolute error = 0.45, R^2 = -0.09
+# _________range_abs_mark___Mean squared error = 0.30, Mean absolute error = 0.44, R^2 = -0.06
+# _________range_abs_fund___Mean squared error = 0.31, Mean absolute error = 0.45, R^2 = -0.08
 knn = neighbors.KNeighborsRegressor(n_neighbors=5, weights='uniform', algorithm='auto', leaf_size=30)
 
-# decision tree ____________Mean squared error = 0.52, R^2 = -0.83
+# decision tree _____set1___Mean squared error = 0.60, Mean absolute error = 0.62, R^2 = -1.10
+# ___________________set2___Mean squared error = 0.53, Mean absolute error = 0.58, R^2 = -0.84
+# ___________________set3___Mean squared error = 0.61, Mean absolute error = 0.61, R^2 = -1.14
+# ___________________set4___Mean squared error = 0.54, Mean absolute error = 0.59, R^2 = -0.90
+# __________________funds___Mean squared error = 0.51, Mean absolute error = 0.56, R^2 = -0.77
+# __________________marks___Mean squared error = 0.56, Mean absolute error = 0.60, R^2 = -0.96
 tree = DecisionTreeRegressor(criterion='mse', splitter='best', max_depth=None, min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_features=None, random_state=None, max_leaf_nodes=None, min_impurity_decrease=0.0, min_impurity_split=None, presort=False)
 
-# gradient tree boosting ___Mean squared error = 0.31, R^2 = -0.08
+# gradient tree boosting ___Mean squared error = 0.31, Mean absolute error = 0.45, R^2 = -0.08
+# ___________________set2___Mean squared error = 0.30, Mean absolute error = 0.44, R^2 = -0.04
+# ___________________set3___Mean squared error = 0.31, Mean absolute error = 0.45, R^2 = -0.07
+# ___________________set4___Mean squared error = 0.30, Mean absolute error = 0.44, R^2 = -0.04
+# __________________funds___Mean squared error = 0.27, Mean absolute error = 0.42, R^2 = 0.04
+# __________________marks___Mean squared error = 0.29, Mean absolute error = 0.44, R^2 = -0.03
 gtb = GradientBoostingRegressor(loss='ls', learning_rate=0.1, n_estimators=100, subsample=1.0, criterion='friedman_mse', min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0, min_impurity_split=None, init=None, random_state=None, max_features=None, alpha=0.9, verbose=0, max_leaf_nodes=None, warm_start=False, presort='auto')
 
-# multi-layer perceptron regressor
+# multi-layer perceptron regressor_set1___Mean squared error = 0.33, Mean absolute error = 0.46, R^2 = -0.14
+# ___________________set2___Mean squared error = 0.30, Mean absolute error = 0.45, R^2 = -0.05
+# ___________________set3___Mean squared error = 0.30, Mean absolute error = 0.45, R^2 = -0.03
+# ___________________set4___Mean squared error = 0.32, Mean absolute error = 0.45, R^2 = -0.11
+# __________________funds___Mean squared error = 0.28, Mean absolute error = 0.43, R^2 = 0.04
+# __________________marks___Mean squared error = 0.30, Mean absolute error = 0.45, R^2 = -0.03
 mpr = MLPRegressor(hidden_layer_sizes=(5, 4), activation='tanh', solver='lbfgs', alpha=0.4, batch_size='auto', learning_rate='adaptive', learning_rate_init=0.01, power_t=0.5, max_iter=200, shuffle=False, random_state=None, tol=0.0001, verbose=True, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
 
 # cross validation
 # takes care of splitting data
-predicted = cross_validation.cross_val_predict(mpr, set4, output, cv=10)
+predicted = cross_validation.cross_val_predict(knn, range_abs_fund, output, cv=4)
 print("Mean squared error: %0.2f" % (metrics.mean_squared_error(output, predicted)))
 print("Mean absolute error: %0.2f" % (metrics.mean_absolute_error(output, predicted)))
 print("R^2 coefficient: %0.2f" % (metrics.r2_score(output, predicted)))
@@ -183,7 +226,7 @@ ax.scatter(output, predicted, edgecolors=(0, 0, 0))
 ax.plot([output.min(), output.max()], [output.min(), output.max()], 'k--', lw=4)
 ax.set_xlabel('Measured')
 ax.set_ylabel('Predicted')
-plt.show()
+#plt.show()
 
 # TODO split, train, predict, validate
 #print("Accuracy: " + metrics.accuracy_score(output, predicted))
