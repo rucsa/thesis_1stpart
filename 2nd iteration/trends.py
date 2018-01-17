@@ -1,14 +1,12 @@
-import pandas as pd
-import numpy as np
 import dataProcessing as dp
-import prediction as predict
-from sklearn import preprocessing
-
+import pandas as pd
 from sklearn import linear_model, svm, neighbors
+from sklearn import preprocessing
+from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.neural_network import MLPRegressor
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import GradientBoostingRegressor
-from sklearn import model_selection
+
+import prediction as predict
 
 ##### upload data
 data_nov = pd.read_excel('../Data/BLB_data_only_values_1511.xlsx')
