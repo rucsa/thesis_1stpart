@@ -1,56 +1,234 @@
-""" Second iteration regression - with data trends"""
+""" Second iteration regression - with data trends """
 
 REG
-
 Mean squared error: 0.29
 Mean absolute error: 0.44
 R^2 coefficient: -0.01
 
 LSS
-
 Mean squared error: 0.29
 Mean absolute error: 0.44
 R^2 coefficient: -0.00
 
 LSVR
-
 Mean squared error: 4.26
 Mean absolute error: 1.03
 R^2 coefficient: -13.98
 
 SVR
-
 Mean squared error: 0.29
 Mean absolute error: 0.44
 R^2 coefficient: -0.00
 
 
 NuSVR
-
 Mean squared error: 0.29
 Mean absolute error: 0.44
 R^2 coefficient: -0.00
 
 KNN
-
 Mean squared error: 0.31
 Mean absolute error: 0.45
 R^2 coefficient: -0.10
 
 TREE
-
 Mean squared error: 0.50
 Mean absolute error: 0.56
 R^2 coefficient: -0.76
 
-GTB
-
+GTB # This problem is unconstrained
 Mean squared error: 0.30
 Mean absolute error: 0.44
 R^2 coefficient: -0.05
 
-MPR
-
+MPR # better with 4 folds than 10
 Mean squared error: 0.28
 Mean absolute error: 0.43
 R^2 coefficient: 0.02
+
+""" Added fundamental data for december to trends """
+
+REG
+Mean squared error: 0.30
+Mean absolute error: 0.44
+R^2 coefficient: -0.05
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSVR
+Mean squared error: 229.26
+Mean absolute error: 3.21
+R^2 coefficient: -804.69
+
+SVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+NuSVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+KNN
+Mean squared error: 0.32
+Mean absolute error: 0.45
+R^2 coefficient: -0.11
+
+TREE
+Mean squared error: 0.49
+Mean absolute error: 0.56
+R^2 coefficient: -0.71
+
+GTB # This problem is unconstrained
+Mean squared error: 0.27
+Mean absolute error: 0.42
+R^2 coefficient: 0.04
+
+MPR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.02
+
+""" Applied non-linear trasnformation before prediction """
+
+REG
+Mean squared error: 0.26
+Mean absolute error: 0.41
+R^2 coefficient: 0.07
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSVR
+Mean squared error: 0.26
+Mean absolute error: 0.41
+R^2 coefficient: 0.07
+
+SVR
+Mean squared error: 0.26
+Mean absolute error: 0.40
+R^2 coefficient: 0.08
+
+NuSVR
+Mean squared error: 0.26
+Mean absolute error: 0.41
+R^2 coefficient: 0.09
+KNN
+Mean squared error: 0.29
+Mean absolute error: 0.43
+R^2 coefficient: -0.01
+
+TREE
+Mean squared error: 0.49
+Mean absolute error: 0.56
+R^2 coefficient: -0.71
+
+GTB
+Mean squared error: 0.27
+Mean absolute error: 0.42
+R^2 coefficient: 0.03
+
+MPR
+Mean squared error: 0.33
+Mean absolute error: 0.45
+R^2 coefficient: -0.15
+
+""" Applied standardization and absolute scaling [-1,1] """
+
+REG
+Mean squared error: 0.30
+Mean absolute error: 0.44
+R^2 coefficient: -0.05
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+SVR
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.01
+
+NuSVR
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.01
+
+KNN
+Mean squared error: 0.32
+Mean absolute error: 0.46
+R^2 coefficient: -0.12
+
+TREE
+Mean squared error: 0.48
+Mean absolute error: 0.55
+R^2 coefficient: -0.68
+
+GTB
+Mean squared error: 0.27
+Mean absolute error: 0.42
+R^2 coefficient: 0.04
+
+MPR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.02
+
+""" Scaled to range [0, 1] """
+
+REG
+Mean squared error: 0.30
+Mean absolute error: 0.44
+R^2 coefficient: -0.05
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.00
+
+SVR
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.02
+
+NuSVR
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.02
+
+KNN
+Mean squared error: 0.31
+Mean absolute error: 0.46
+R^2 coefficient: -0.11
+
+TREE
+Mean squared error: 0.48
+Mean absolute error: 0.55
+R^2 coefficient: -0.69
+
+GTB
+Mean squared error: 0.28
+Mean absolute error: 0.42
+R^2 coefficient: 0.03
+
+MPR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
