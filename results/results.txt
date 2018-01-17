@@ -1,0 +1,56 @@
+""" Second iteration regression - with data trends"""
+
+REG
+
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSS
+
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.00
+
+LSVR
+
+Mean squared error: 4.26
+Mean absolute error: 1.03
+R^2 coefficient: -13.98
+
+SVR
+
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.00
+
+
+NuSVR
+
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.00
+
+KNN
+
+Mean squared error: 0.31
+Mean absolute error: 0.45
+R^2 coefficient: -0.10
+
+TREE
+
+Mean squared error: 0.50
+Mean absolute error: 0.56
+R^2 coefficient: -0.76
+
+GTB
+
+Mean squared error: 0.30
+Mean absolute error: 0.44
+R^2 coefficient: -0.05
+
+MPR
+
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.02
