@@ -1,22 +1,79 @@
 import dataProcessing as dp
 import pandas as pd
+import numpy as np
 from sklearn import linear_model, svm, neighbors
-from sklearn import preprocessing
+from sklearn. linear_model import SGDRegressor
+from sklearn import preprocessing, metrics
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.neural_network import MLPRegressor
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.model_selection import validation_curve
+import matplotlib.pyplot as plt
+import matplotlib
+import pickle
+from sklearn.model_selection import train_test_split
+from scipy.stats import iqr
+import math
 
 import prediction as predict
 
 ##### upload data
-data_nov = pd.read_excel('../Data/BLB_data_only_values_1511.xlsx')
-data_dec = pd.read_excel('../Data/BLB_data_only_values_1512.xlsx')
-data_jan = pd.read_excel('../Data/BLB_data_only_values_1501.xlsx')
+data_nov = pd.read_excel('../../Data/BLB_data_only_values_1511.xlsx')
+data_dec = pd.read_excel('../../Data/BLB_data_only_values_1512.xlsx')
+data_jan = pd.read_excel('../../Data/BLB_data_only_values_1501.xlsx')
 
-# extract features
+# extract features that express trend movement (substracting one month from another doesn't bring the whole column to zero)
 numeric_nov = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap']]
 numeric_dec = data_dec[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap']]
 numeric_jan = data_jan[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap']]
+
+p = data_nov[['P/E']].dropna().values
+min = np.percentile(p, 25)
+max = np.percentile(p, 75)
+print 'P/E values should be between %s and %s' % (min, max)
+
+pe = data_nov[['P/E', 'analyst rating']]
+pe = pe[np.isfinite(pe['P/E'])]
+pe = pe.loc[pe['P/E'] <= max]
+pe = pe.loc[pe['P/E'] >= min]
+
+anr = pe[['analyst rating']].values
+pe = pe[['P/E']].values
+
+fig = plt.figure()
+plt.ylabel('Analyst rating')
+plt.xlabel('P/E')
+plt.scatter(pe, anr)
+
+plt.show()
+
+
+
+
+
+
+
+# pe_data = np.empty([2, 240])
+# print pe_data
+# for tup in pe:
+#     if not math.isnan(tup[0]):
+#         np.append(pe_data, tup)
+
+
+
+
+
+# pe = data_nov[['P/E']].dropna().values
+# min = np.percentile(pe, 25)
+# max = np.percentile(pe, 75)
+# iqr = iqr(pe, axis=0, rng=[25, 75])
+# print 'iqr: %s \nP/E values should be between %s and %s' % (iqr, min, max)
+# pe_data = []
+# for value in pe:
+#     if value>=min and value<=max :
+#         pe_data.append(value)
+# print len(pe_data)
+
 
 output_dec = data_dec[['analyst rating']]
 output_jan = data_jan[['analyst rating']]
@@ -44,7 +101,7 @@ non_trends_dec.loc[:, 'operational cash flow'] = non_trends_dec.loc[:,'operation
 non_trends_dec = non_trends_dec.drop('market cap', 1)
 
 # concat data frames
-dec_nov = pd.concat([dec_nov, non_trends_dec], axis=1)
+dec_nov_all = pd.concat([dec_nov, non_trends_dec], axis=1)
 
 # make arrays
 dec_nov = dec_nov.values
@@ -81,6 +138,11 @@ models.append(('TREE', DecisionTreeRegressor(criterion='mse', splitter='best', m
 models.append(('GTB', GradientBoostingRegressor(loss='ls', learning_rate=0.1, n_estimators=100, subsample=1.0, criterion='friedman_mse', min_samples_split=2, min_samples_leaf=1, min_weight_fraction_leaf=0.0, max_depth=3, min_impurity_decrease=0.0, min_impurity_split=None, init=None, random_state=None, max_features=None, alpha=0.9, verbose=0, max_leaf_nodes=None, warm_start=False, presort='auto')))
 models.append(('MPR', MLPRegressor(hidden_layer_sizes=(5, 4), activation='tanh', solver='lbfgs', alpha=0.4, batch_size='auto', learning_rate='adaptive', learning_rate_init=0.01, power_t=0.5, max_iter=200, shuffle=False, random_state=None, tol=0.0001, verbose=True, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)))
 
-predict.regression(models, dec_nov_scal, output_dec)
+# predict.regression(models, dec_nov_scal, output_dec)
+
+# TODO: Validation curves
+# TODO: Learning curves
+
+# http://sdsawtelle.github.io/blog/output/week6-andrew-ng-machine-learning-with-python.html
 
 
