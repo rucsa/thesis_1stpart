@@ -14,6 +14,7 @@ import pickle
 from sklearn.model_selection import train_test_split
 from scipy.stats import iqr
 import math
+from scipy import stats
 
 import prediction as predict
 
@@ -27,53 +28,31 @@ numeric_nov = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 da
 numeric_dec = data_dec[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap']]
 numeric_jan = data_jan[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap']]
 
-p = data_nov[['P/E']].dropna().values
-min = np.percentile(p, 25)
-max = np.percentile(p, 75)
-print 'P/E values should be between %s and %s' % (min, max)
+numeric_nov_all = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets', 'analyst rating']]
+list = ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets', 'analyst rating']
 
-pe = data_nov[['P/E', 'analyst rating']]
-pe = pe[np.isfinite(pe['P/E'])]
-pe = pe.loc[pe['P/E'] <= max]
-pe = pe.loc[pe['P/E'] >= min]
+### plot linear regression trendline
+for item in list:
+    p = numeric_nov_all[[item]].dropna().values
+    #min = np.percentile(p, 25)
+    max = np.percentile(p, 75)
+    #print '%s values should be between %s and %s' % (item, 0, max)
+    pe = data_nov[[item, 'analyst rating']]
+    pe = pe[np.isfinite(pe[item])]
+    pe = pe.loc[pe[item] <= max]
+    anr = pe[['analyst rating']].values
+    pe = pe[[item]].values
+    fig = plt.figure()
+    plt.ylabel('Analyst rating')
+    plt.xlabel(item)
+    # linregress needs one dimentional array - obtained through slicing
+    plt.scatter(pe, anr)
+    slope, intercept, rvalue, pvalue, stderr = stats.linregress(pe[:,0], anr[:,0])
+    plt.plot(pe, intercept + slope*pe, 'r', label='fitted line')
+    plt.show()
+    print '%s has correlation of %s and R-squared: %s' % (item, rvalue, rvalue**2)
 
-anr = pe[['analyst rating']].values
-pe = pe[['P/E']].values
-
-fig = plt.figure()
-plt.ylabel('Analyst rating')
-plt.xlabel('P/E')
-plt.scatter(pe, anr)
-
-plt.show()
-
-
-
-
-
-
-
-# pe_data = np.empty([2, 240])
-# print pe_data
-# for tup in pe:
-#     if not math.isnan(tup[0]):
-#         np.append(pe_data, tup)
-
-
-
-
-
-# pe = data_nov[['P/E']].dropna().values
-# min = np.percentile(pe, 25)
-# max = np.percentile(pe, 75)
-# iqr = iqr(pe, axis=0, rng=[25, 75])
-# print 'iqr: %s \nP/E values should be between %s and %s' % (iqr, min, max)
-# pe_data = []
-# for value in pe:
-#     if value>=min and value<=max :
-#         pe_data.append(value)
-# print len(pe_data)
-
+print numeric_nov_all.corr()['analyst rating']
 
 output_dec = data_dec[['analyst rating']]
 output_jan = data_jan[['analyst rating']]
