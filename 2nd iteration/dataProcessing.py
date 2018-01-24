@@ -10,3 +10,9 @@ def fill(dataFrame, method='', limit=1):
 
 def mask(dataFrame):
     return dataFrame.isnull()
+
+def count_duplicates(counted, dictionary):
+    if (counted == len(dictionary)):
+        print ('no duplicate keys in dict')
+    else:
+        print ('{} elements have the same key'.format(len(dictionary) - counted))
