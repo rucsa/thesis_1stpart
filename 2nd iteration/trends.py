@@ -18,6 +18,8 @@ from scipy import stats
 from sklearn.linear_model import LinearRegression
 import collections
 import prediction as predict
+import xlsxwriter
+
 
 '''' upload data '''
 data_nov = pd.read_excel('../../Data/BLB_data_only_values_1511.xlsx')
@@ -29,13 +31,18 @@ numeric_nov = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 da
 numeric_dec = data_dec[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap']]
 numeric_jan = data_jan[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap']]
 
-numeric_nov_all = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets', 'analyst rating']]
-numeric_nov_all_no_anr = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets']]
-list = ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets']
-results = []
+numeric_nov_all = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'revenue', 'gross profit', 'net income', 'operational cash flow', 'total assets', 'analyst rating']]
+numeric_nov_all_no_anr = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'revenue', 'gross profit', 'net income', 'operational cash flow', 'total assets']]
+list = ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'revenue', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+
+results = {}
+
+writer = pd.ExcelWriter('../results/results.xlsx', engine='xlsxwriter')
 
 ''' plot linear regression trendline '''
-''' individual feature correlation '''
+''' individual feature correlation - without outliers'''
+output = pd.DataFrame(columns=['Feature', 'R_squared', 'Correlation'])
+index = 0
 for item in list:
     p = numeric_nov_all_no_anr[[item]].dropna().values
     #min = np.percentile(p, 25)
@@ -55,54 +62,16 @@ for item in list:
     #plt.plot(pe, intercept + slope*pe, 'r', label='fitted line')
     #plt.show()
     nl = '\n'
-    results.append("{} has correlation of {} and R-squared: {}\n".format(item, rvalue, rvalue**2))
+    output.loc[index] = ({"Feature": item, "R_squared": rvalue**2, "Correlation": rvalue})
+    index = index + 1
 
-for result in results:
-    print (result)
-print (numeric_nov_all.corr()['analyst rating'])
-print ("\n")
+output.to_excel(writer, sheet_name='Sheet1')
 
-results = {}
-lreg = LinearRegression()
-        
-''' 8 features correlation '''
-count8 = 0
-for i in range(0, len(list)-7):
-    for j in range(i+1, len(list)-6):
-        for k in range (j+1, len(list)-5):
-            for l in range (k+1, len(list)-4):
-                for m in range (l+1, len(list)-3):
-                    for n in range (m+1, len(list)-2):
-                        for o in range (n+1, len(list)-1):
-                            for p in range (o+1, len(list)):
-                                X = numeric_nov_all.loc[:, [list[i], list[j], list[k], list[l], list[m], list[n], list[o], list[p], 'analyst rating']].dropna()
-                                y = X.loc[:, 'analyst rating']
-                                X = X.drop(['analyst rating'], axis=1)
-                                X_train, X_test, y_train, y_test = train_test_split(X, y)
-                                #print('Using features: {}, {} and {} '.format(list[i], list[j], list[k]))
-        
-                                lreg.fit(X_train, y_train)
-                                predicted = lreg.predict(X_test)
-        
-                                residuals = y_test - predicted
-                                mean_obs = np.mean(y_test)
-                                ss_res = np.sum((y_test - predicted)**2)
-                                ss_tot = np.sum((y_test - mean_obs)**2)
-                                mse = np.mean((predicted - y_test)**2)
-                                r = lreg.score(X_test, y_test)
-        
-                                #print ('Mean squared error = {}'.format(mse))
-                                #print ('lreg R_squared is {} | Calculated R_squared is {}\n'.format(r, 1-(ss_res/ss_tot)))
-        
-                                key = [list[i], list[j], list[k], list[l], list[m], list[n], list[o], list[p]]
-                                results[r] = key
-                                count8 = count8 + 1
+''' individual feature correlation - with outliers'''
+numeric_nov_all.corr()['analyst rating'].to_excel(writer, sheet_name='Sheet2')
 
-sorted = collections.OrderedDict(sorted(results.items()))
-for k,v in sorted.items():
-    print('{} : {}'.format(k,v))   
-
-dp.count_duplicates(count8, results)
+writer.save()
+writer.close()
 
 output_dec = data_dec[['analyst rating']]
 output_jan = data_jan[['analyst rating']]
@@ -117,13 +86,13 @@ dec_nov = numeric_dec.sub(numeric_nov, axis=0)
 jan_dec = numeric_jan.sub(numeric_dec, axis=0)
 
 # add december data to trends
-non_trends_dec = data_dec[[	'returns last 5 years',	'quick ratio',	'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets', 'market cap']]
+non_trends_dec = data_dec[[	'returns last 5 years',	'quick ratio',	'inventory turnover', 'revenue', 'gross profit', 'net income', 'operational cash flow', 'total assets', 'market cap']]
 non_trends_dec = dp.interpolate(non_trends_dec)
 
 # make fundamental data relative to company size
 non_trends_dec.loc[:, 'total assets'] = non_trends_dec.loc[:, 'total assets'] / 1000 # express in billions
 non_trends_dec.loc[:, 'inventory turnover'] = non_trends_dec.loc[:, 'inventory turnover'] / non_trends_dec.loc[:, 'market cap']
-non_trends_dec.loc[:, 'sale ravenue turnover'] = non_trends_dec.loc[:, 'sale ravenue turnover'] / non_trends_dec.loc[:, 'market cap']
+non_trends_dec.loc[:, 'revenue'] = non_trends_dec.loc[:, 'revenue'] / non_trends_dec.loc[:, 'market cap']
 non_trends_dec.loc[:, 'gross profit'] = non_trends_dec.loc[:,'gross profit'] / non_trends_dec.loc[:,'market cap']
 non_trends_dec.loc[:, 'net income'] = non_trends_dec.loc[:,'net income'] / non_trends_dec.loc[:,'market cap']
 non_trends_dec.loc[:, 'operational cash flow'] = non_trends_dec.loc[:,'operational cash flow'] / non_trends_dec.loc[:,'market cap']

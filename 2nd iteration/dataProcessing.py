@@ -1,4 +1,10 @@
 import scipy as sy
+import pandas as pd
+import numpy as np
+import utils as ut
+
+from sklearn.preprocessing import LabelEncoder
+from sklearn import preprocessing
 
 def interpolate(dataFrame, method='values'):
     return dataFrame.interpolate(method=method)
@@ -16,3 +22,106 @@ def count_duplicates(counted, dictionary):
         print ('no duplicate keys in dict')
     else:
         print ('{} elements have the same key'.format(len(dictionary) - counted))
+
+
+'''' upload data '''
+data_nov = pd.read_excel('../../Data/BLB_data_only_values_1511.xlsx')
+data_dec = pd.read_excel('../../Data/BLB_data_only_values_1512.xlsx')
+data_jan = pd.read_excel('../../Data/BLB_data_only_values_1501.xlsx')
+
+numeric_nov = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
+                        'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
+                        'market cap']]
+numeric_dec = data_dec[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
+                        'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
+                        'market cap']]
+numeric_jan = data_jan[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
+                        'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
+                        'market cap']]
+
+numeric_nov_all = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
+                            'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
+                            'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover',
+                            'revenue', 'gross profit', 'net income', 'operational cash flow',
+                            'total assets', 'analyst rating']]
+numeric_nov_all_no_anr = data_nov[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
+                                   'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
+                                   'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover',
+                                   'revenue', 'gross profit', 'net income', 'operational cash flow',
+                                   'total assets']]
+
+numeric_dec_all = data_dec[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
+                            'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
+                            'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover',
+                            'revenue', 'gross profit', 'net income', 'operational cash flow',
+                            'total assets', 'analyst rating']]
+numeric_jan_all = data_jan[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
+                            'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
+                            'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover',
+                            'revenue', 'gross profit', 'net income', 'operational cash flow',
+                            'total assets', 'analyst rating']]
+
+features = ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month',
+            'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years',
+            'quick ratio', 'inventory turnover', 'revenue', 'gross profit', 'net income',
+            'operational cash flow', 'total assets']
+
+''' count nans per column '''
+nans_n = numeric_nov_all.isnull().sum()
+nans_d = numeric_dec_all.isnull().sum()
+nans_j = numeric_jan_all.isnull().sum()
+
+''' scale out to market cap '''
+nov_processed = numeric_nov_all.copy()
+dec_processed = numeric_nov_all.copy()
+jan_processed = numeric_nov_all.copy()
+feature_set = ['inventory turnover', 'revenue', 'gross profit', 
+               'net income', 'operational cash flow',
+                            'total assets']
+nov_processed = ut.scaleOutMarketCap(nov_processed, feature_set)
+dec_processed = ut.scaleOutMarketCap(dec_processed, feature_set)
+jan_processed = ut.scaleOutMarketCap(jan_processed, feature_set)
+
+''' create feature 'size' '''
+nov_processed['size'] = ut.encodeMarketCap(nov_processed)
+
+''' encode categorical variables '''
+string_nov = data_nov[['Sector', 'region', 'ethics', 'bribery']]
+string_nov = ut.categoricalToNumeric(string_nov, LabelEncoder())
+nov_processed = pd.concat([nov_processed, string_nov], axis=1)
+
+''' create feature PSR '''
+nov_processed['PSR'] = nov_processed.loc[:,'market cap'] / nov_processed.loc[:,'revenue']
+features = list(nov_processed.columns.values)
+
+''' create y for regression'''
+y = nov_processed.loc[:, 'analyst rating']
+nov_processed = nov_processed.drop(['analyst rating'], axis=1)
+
+''' create y for classification'''
+#y_class = pd.cut(y, bins=[0, 1.5, 2.5, 3.5, 4.5, 5], include_lowest=True, labels=['strong sell', 'sell', 'hold', 'buy', 'strong buy'])
+# some classifiers don't take sttrings for classes
+y_class = pd.cut(y, bins=[0, 1.5, 2.5, 3.5, 4.5, 5], include_lowest=True, labels=[1, 2, 3, 4, 5])
+
+
+
+nov_processed = interpolate(nov_processed)
+
+# scale data
+scaler = preprocessing.StandardScaler()
+nov_processed = scaler.fit(nov_processed).transform(nov_processed)
+
+# [-1,1]
+#max_abs_scaler = preprocessing.MaxAbsScaler()
+#nov_processed = max_abs_scaler.fit_transform(nov_processed)
+
+X = nov_processed.copy()
+
+#X should be a properly defined pandas DataFrame
+
+
+#X = pd.DataFrame(X, columns=features[0:24])
+#X.columns.name='Features'
+#X.index.name='Observations'
+
+#X.to_hdf('data.hdf5', 'Datataset1/X')
