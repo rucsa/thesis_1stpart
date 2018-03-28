@@ -103,25 +103,18 @@ nov_processed = nov_processed.drop(['analyst rating'], axis=1)
 # some classifiers don't take sttrings for classes
 y_class = pd.cut(y, bins=[0, 1.5, 2.5, 3.5, 4.5, 5], include_lowest=True, labels=[1, 2, 3, 4, 5])
 
-
-
+# deal with missing values
 nov_processed = interpolate(nov_processed)
+#imp = preprocessing.Imputer(missing_values='NaN', strategy='mean', axis=0)
+#imp.fit_transform(nov_processed)
 
-# scale data
-scaler = preprocessing.StandardScaler()
-nov_processed = scaler.fit(nov_processed).transform(nov_processed)
+scaler = preprocessing.StandardScaler() # standard scaling
+#scaler = preprocessing.MaxAbsScaler() # scale to range [0, 1]
+#scaler = preprocessing.MaxAbsScaler() # scale to range [-1,1]
+#scaler = preprocessing.RobustScaler() #scaling with outliers
+#scaler = preprocessing.QuantileTransformer() #non-linear transformation
+#scaler = preprocessing. Normalizer()
+nov_processed = pd.DataFrame(scaler.fit_transform(nov_processed), columns=nov_processed.columns, index=nov_processed.index) 
 
-# [-1,1]
-#max_abs_scaler = preprocessing.MaxAbsScaler()
-#nov_processed = max_abs_scaler.fit_transform(nov_processed)
+nov_processed.to_hdf('data.hdf5', 'Datataset1/X')
 
-X = nov_processed.copy()
-
-#X should be a properly defined pandas DataFrame
-
-
-#X = pd.DataFrame(X, columns=features[0:24])
-#X.columns.name='Features'
-#X.index.name='Observations'
-
-#X.to_hdf('data.hdf5', 'Datataset1/X')

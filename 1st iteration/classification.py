@@ -67,7 +67,7 @@ f.write ('LEGEND: \n 0-1:A (strong sell) \n 1-2:B (sell) \n 2-3:C (hold) \n 3-4:
 #outputLabels = np.asarray(outputLabels)
 
 # validate bins labels in 'classes.txt' file
-for i in xrange(1,len(output)):
+for i in range(1,len(output)):
 	f.write(str(output[i]) + '      ' + str(outputLabels[i]) + '\n')
 
 #### classify

@@ -1,64 +1,52 @@
-from dataProcessing import X, y, features
-from sklearn.feature_selection import SelectFromModel, RFECV
-from sklearn.linear_model import LassoCV
+from dataProcessing import y
+from sklearn.linear_model import LassoLarsCV
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 import numpy as np
-import utils as util
 import pandas as pd
 
-#feature_names=['Feature %d' % i for i in X]
-
-#data = pd.read_hdf('data.hdf5', 'Datataset1/X')
-X = pd.DataFrame(X)
+X = pd.read_hdf('data.hdf5', 'Datataset1/X')
 y = pd.DataFrame(y)
-#colors=util.generate_n_colors(len((X.columns), pastel_factor = 0.9)
-#colors = {col:colors[i] for i, col in enumerate(X.columns)}
-colors=[]
-for i in range(0, X.shape[1]):
-    colors.append(util.generate_new_color(colors, pastel_factor = 0.9))
 
 X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     test_size = 0.3,
                                                     random_state=0)
 
-fig = plt.figure()
-ax = plt.subplot(111)
-n_alpha = 200
-alphas = np.logspace(-10, -2, n_alpha)
-coefs =[]
+model = LassoLarsCV(cv=10, precompute=False, fit_intercept=False).fit(X_train, y_train)
+results = dict(zip(X.columns, model.coef_))
+print (results)
 
-for a in alphas:
-    lr = LassoCV(cv=4, alpha=a, fit_intercept=False, random_state=0)
-    lr.fit(X, y)
-    coefs.append(lr.coef_)
-    
+# MSE
+m_alpha = -np.log10(model.cv_alphas_)
+plt.figure()
+lass = model.mse_path_
+plt.plot(m_alpha, lass, ':')
+plt.plot(m_alpha, model.mse_path_.mean(axis=-1), 'k', label='Average across folds', linewidth=2)
+plt.axvline(-np.log10(model.alpha_), linestyle='--', color='k', label='alpha CV')
+plt.legend()
+plt.xlabel('-log(alpha)')
+plt.ylabel('Mean squared error')
+plt.title('MSE for each fold')
+plt.show()
 
-#weights=pd.Series(1, index=feature_names)
+# coefficient prograssion
+m_log_alphas = -np.log10(model.alphas_)
+ax = plt.gca()
+plt.plot(m_log_alphas, model.coef_path_.T)
+plt.axvline(-np.log10(model.alpha_), linestyle='--', color='k', label='alpha')
+plt.ylabel('coefficients')
+plt.legend()
+plt.xlabel('-log(alpha)')
+plt.title('Regression Coefficients Pregression for Lasso Lars')
+plt.show()
 
-ax.plot(alphas, coefs)
-ax.set_xscale('log')
-ax.set_xlim(ax.get_xlim()[::-1])
-plt.xlabel('alpha')
-plt.ylabel('weights')
-plt.axis('tight')
-plt.title('Lasso coefficients as a function of the regularization')
+train_error = mean_squared_error(y_train, model.predict(X_train))
+test_error = mean_squared_error(y_test, model.predict(X_test))
 
-#for column, color in zip(range(weights.shape[0]), colors):
-#    plt.plot(params, weights[:, column],
-#             label=X.columns[column+1],
-#             color=color)
-#    plt.axhline(0, color='black', linestyle='--', linewidth=3)
-#    plt.xlim([10**(-5), 10**5])
-#    plt.ylabel('weight coefficient')
-#    plt.xlabel('C')
-#    plt.xscale('log')
-#    plt.legend(loc='upper left')
-#    ax.legend(loc='upper center', bbox_to_anchor=(1.38, 1.03),
-#              ncol=1, fancybox=True)
-#    plt.show()
-    
-#    
-#for colname, col in X.columns.items():
-#    colors[colname]
+# MSE
+print ('training error {}'.format(train_error))
+print ('test error {}'.format(test_error))
+# R squared
+print ('R_sqr for training {}'.format(model.score(X_train, y_train)))
+print ('R_sqr for test {}'.format(model.score(X_test, y_test)))

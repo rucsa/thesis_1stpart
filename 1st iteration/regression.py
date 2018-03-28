@@ -14,7 +14,7 @@ f = open('output.txt', 'w').close()
 f = open('output.txt', 'a')
 
 ##### upload data
-data = pd.read_csv('../Data/model_data.csv', sep=';', header = 0);
+data = pd.read_csv('../../Data/model_data.csv', sep=';', header = 0);
 
 ##### clean
 data = data.replace({'%':''}, regex=True);
@@ -95,10 +95,10 @@ fund_data.loc[:, 'operational cash flow'] = fund_data.loc[:,'operational cash fl
 #print(output.head())
 
 # scatter matrix ## correlation with buy/hold/sell advice on y axis
-#pd.plotting.scatter_matrix(mark_data, alpha=0.7, diagonal = 'hist', figsize=[8,8], s=100)
-#plt.show()
-#pd.plotting.scatter_matrix(mark_data, alpha=0.7, diagonal = 'hist', figsize=[8,8], s=100)
-#plt.show()
+pd.plotting.scatter_matrix(mark_data, alpha=0.7, diagonal = 'hist', figsize=[8,8], s=100)
+plt.show()
+pd.plotting.scatter_matrix(mark_data, alpha=0.7, diagonal = 'hist', figsize=[8,8], s=100)
+plt.show()
 
 ### scale
 scaler = preprocessing.StandardScaler()
