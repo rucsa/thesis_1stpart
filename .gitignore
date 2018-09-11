@@ -1,4 +1,9 @@
 # ignore data files #
 
-*.csv
-*.txt
+.csv
+.png
+.PNG
+.hdf5
+.txt
+.xlsx
+.tex

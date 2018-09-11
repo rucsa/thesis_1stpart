@@ -1,0 +1,1242 @@
+"""" Data Analysis """
+
+### correlations ###
+### used DataFrame.corr()
+
+adjusted beta           -0.080556
+volatility 30 days      -0.054789
+volatility 90 days      -0.057303
+volatility 360 days     -0.027445
+return last 3 month      0.103961
+returns last 6 months    0.162523
+return last year         0.259340
+P/E                      0.107058
+EPS                      0.041241
+market cap               0.225063
+returns last 5 years    -0.054776
+quick ratio              0.135359
+inventory turnover       0.111984
+sale ravenue turnover    0.067566
+gross profit             0.128143
+net income               0.117401
+operational cash flow    0.144654
+total assets             0.008846
+
+###################################### 8 features correlations
+
+0.18333887820486497 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'total assets']
+0.18336956608777366 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'P/E', 'EPS', 'quick ratio', 'sale ravenue turnover', 'operational cash flow']
+0.18337153240307014 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.18339226809660136 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.18348572473779579 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'gross profit']
+0.18348890262435935 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'sale ravenue turnover', 'gross profit']
+0.18356389051464195 : ['volatility 30 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'quick ratio', 'sale ravenue turnover', 'net income']
+0.1835826978404749 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'EPS', 'quick ratio', 'gross profit', 'operational cash flow']
+0.1835900529652672 : ['volatility 90 days', 'return last year', 'P/E', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.18371560851155552 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'return last year', 'P/E', 'market cap', 'quick ratio', 'operational cash flow']
+0.18374965372049534 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'inventory turnover', 'net income', 'operational cash flow', 'total assets']
+0.1837673814606411 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.18377328939766413 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.18382780027262502 : ['volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.18392259776908007 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.18392569268383618 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.18397419947355242 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'net income']
+0.1841320865975562 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'net income', 'operational cash flow', 'total assets']
+0.18414716215836924 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'operational cash flow']
+0.18421335319170695 : ['adjusted beta', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow']
+0.18431047251752164 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.18438595963445814 : ['volatility 90 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income', 'total assets']
+0.1844652556037332 : ['adjusted beta', 'volatility 30 days', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.18454836754106144 : ['volatility 360 days', 'return last 3 month', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'operational cash flow', 'total assets']
+0.18486834771227956 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.18498906737257703 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.185053926987645 : ['adjusted beta', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.18509322200336523 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.18510965687913672 : ['volatility 30 days', 'volatility 360 days', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.18515555695364438 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.1852757079206122 : ['volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'total assets']
+0.18532887156452382 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'P/E', 'market cap', 'sale ravenue turnover', 'operational cash flow']
+0.18548884682408853 : ['adjusted beta', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.18549867474896653 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.18554273767776697 : ['volatility 30 days', 'return last year', 'P/E', 'EPS', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income']
+0.18570014495564502 : ['returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow', 'total assets']
+0.18570671059027832 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.18579302140873455 : ['adjusted beta', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'gross profit', 'net income', 'total assets']
+0.18582778930263244 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover']
+0.1858752817231908 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.18587647390869744 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap']
+0.18589948727290917 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'net income']
+0.18590623702531794 : ['volatility 90 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'gross profit', 'net income', 'operational cash flow']
+0.18590814376493014 : ['adjusted beta', 'volatility 360 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income']
+0.18600672612111002 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income']
+0.1860417998522449 : ['volatility 90 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.18605539947870176 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'total assets']
+0.18609601800265618 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'sale ravenue turnover', 'gross profit']
+0.18616233583037445 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'return last year', 'EPS', 'inventory turnover', 'net income', 'operational cash flow']
+0.18617061736139495 : ['return last 3 month', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.18620614095222965 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'net income']
+0.18620924731865882 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.1862192763088235 : ['return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.18629213276082457 : ['adjusted beta', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.18637359934668107 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.18655833877638395 : ['adjusted beta', 'volatility 90 days', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.18661445119097209 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio']
+0.1866563252369227 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'inventory turnover', 'net income', 'operational cash flow']
+0.18667493635542032 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.1868338218904907 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income']
+0.186899448365084 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'net income', 'operational cash flow']
+0.1869637986969509 : ['adjusted beta', 'volatility 360 days', 'return last year', 'P/E', 'EPS', 'market cap', 'sale ravenue turnover', 'operational cash flow']
+0.1873257521748083 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'gross profit']
+0.1873840338119852 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'inventory turnover', 'sale ravenue turnover']
+0.1874437012779635 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'quick ratio', 'gross profit', 'net income']
+0.18747644599736746 : ['returns last 6 months', 'return last year', 'EPS', 'market cap', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.18749769173042355 : ['return last year', 'EPS', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.18751913364031714 : ['adjusted beta', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.1875484737702019 : ['returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow']
+0.18757042503542065 : ['volatility 90 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'operational cash flow']
+0.18769406444144654 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.1876955808803732 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.18774192225346287 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'EPS', 'quick ratio', 'gross profit', 'operational cash flow']
+0.18782556380567905 : ['return last 3 month', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'total assets']
+0.18790892731881303 : ['returns last 6 months', 'return last year', 'EPS', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.18798576658597066 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.18807372764194152 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.18820901817678318 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.18823515165245186 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'market cap', 'returns last 5 years', 'quick ratio', 'net income']
+0.1882374578249315 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'gross profit', 'operational cash flow', 'total assets']
+0.18831875568117662 : ['volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.18847834850270892 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'gross profit', 'operational cash flow', 'total assets']
+0.18858632435848177 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.18862968001115843 : ['return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.1886375984741487 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income', 'operational cash flow']
+0.18865282040778608 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.18885415837831843 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.18898725704475539 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'net income', 'total assets']
+0.18907360564797437 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.18912146928422213 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover']
+0.18932954498706578 : ['volatility 30 days', 'return last year', 'P/E', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.189355468048649 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.1894166218922374 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.18946795489203372 : ['volatility 30 days', 'return last 3 month', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income', 'total assets']
+0.1895203394390238 : ['returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.1895766712039395 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'operational cash flow', 'total assets']
+0.18967663904959728 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'net income', 'total assets']
+0.18980082095336082 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.18986513025879692 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.1899252729860691 : ['adjusted beta', 'return last year', 'EPS', 'market cap', 'quick ratio', 'gross profit', 'net income', 'total assets']
+0.1899431416594155 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.18995660894872798 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.1899767059555022 : ['adjusted beta', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.1900499038231216 : ['volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.19005110506334524 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit', 'net income']
+0.19011619840427507 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.1901954140650346 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'total assets']
+0.19021605880284287 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'inventory turnover']
+0.1902416383515083 : ['volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.19028469748690435 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'quick ratio', 'operational cash flow', 'total assets']
+0.19029233788774189 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'quick ratio', 'inventory turnover', 'gross profit']
+0.19037697314539948 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.1903882868750898 : ['return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'total assets']
+0.19041427549428502 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.19042413498367172 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.19042442667905435 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.19048576938319262 : ['adjusted beta', 'returns last 6 months', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.1905535006970268 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'sale ravenue turnover']
+0.19058483416115435 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.19059070065169004 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'EPS', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.19062322593422376 : ['adjusted beta', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.1907507790795413 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.19083328782528 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income', 'total assets']
+0.1909821607982911 : ['return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'quick ratio', 'gross profit', 'total assets']
+0.19100079603727915 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.19101872652198282 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.19117600408547042 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'gross profit', 'operational cash flow']
+0.19125620260353093 : ['return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.19127447810070541 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.19128410406268104 : ['volatility 30 days', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio']
+0.19153786996583677 : ['adjusted beta', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.19161917794193972 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.19169345753528522 : ['volatility 90 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.19177408211929695 : ['adjusted beta', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'total assets']
+0.1917865728415047 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.19181202653485463 : ['return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.1918634806804974 : ['adjusted beta', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.1920057457497354 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'gross profit']
+0.19228082739386432 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.19233063519820637 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.19235155016269204 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'EPS', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.1923585948455525 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.19244193138745536 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'inventory turnover', 'sale ravenue turnover']
+0.19250737721104927 : ['volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'net income', 'total assets']
+0.19253013384480389 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.1925877893329878 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.1928117629667404 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit', 'net income']
+0.19285815363848802 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.19290798782573956 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.19312280246496824 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'gross profit', 'total assets']
+0.19315379878307726 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'net income', 'operational cash flow']
+0.19318472726341251 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'inventory turnover', 'net income']
+0.19331011446657764 : ['volatility 30 days', 'returns last 6 months', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.19338261545264157 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'net income']
+0.19340149641158022 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.19347689479108532 : ['volatility 90 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.19349397392058876 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'gross profit', 'net income']
+0.19359938442664204 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow', 'total assets']
+0.19365554040742117 : ['return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.19367841512052697 : ['returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.1939353563712639 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'operational cash flow']
+0.19402062996348027 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.1940954766681695 : ['return last 3 month', 'return last year', 'P/E', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.19412664584910788 : ['volatility 360 days', 'return last year', 'P/E', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.19416065940216176 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'net income']
+0.1942062410134141 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'gross profit']
+0.19428394639345847 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover']
+0.1943964598129727 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.19446590414576392 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.1945687194529535 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.19465836092322353 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'quick ratio', 'inventory turnover', 'net income']
+0.1946970212244885 : ['return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'gross profit', 'operational cash flow', 'total assets']
+0.19482081772198423 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'gross profit']
+0.19490670797888243 : ['adjusted beta', 'return last year', 'P/E', 'EPS', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income']
+0.19500702276418824 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.19501837435874292 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.1950342773105339 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.19510162131775277 : ['volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.19513653851106794 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'quick ratio', 'net income', 'total assets']
+0.19515906621849388 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'operational cash flow']
+0.1952270517694883 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.1952889495063017 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'total assets']
+0.19531267367974225 : ['return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.1953911760944248 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'net income', 'operational cash flow']
+0.19552794217117586 : ['return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.19552916986825286 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.19556409506569927 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.19558941818988107 : ['adjusted beta', 'returns last 6 months', 'return last year', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.1955933485262683 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'operational cash flow']
+0.1955988793850808 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.19560338603196925 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.195716410039254 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income', 'operational cash flow']
+0.19578708720936278 : ['adjusted beta', 'returns last 6 months', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'net income', 'operational cash flow', 'total assets']
+0.19581584894586004 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income', 'total assets']
+0.1958326659458923 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'operational cash flow', 'total assets']
+0.19591302794035104 : ['volatility 30 days', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.19593090524480328 : ['volatility 30 days', 'return last 3 month', 'return last year', 'P/E', 'market cap', 'inventory turnover', 'net income', 'operational cash flow']
+0.19602923568608 : ['volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.1961827193620631 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover']
+0.1962279753713562 : ['return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income']
+0.19623054137862617 : ['adjusted beta', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.1962994193018075 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.19637496405509502 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'gross profit', 'net income']
+0.19638521672423193 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'net income', 'operational cash flow']
+0.1963864361048907 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'EPS', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.19646574326097455 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.19660148662996335 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'operational cash flow', 'total assets']
+0.1966830208600724 : ['volatility 90 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.1967187058459986 : ['adjusted beta', 'return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.19678944123395548 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.19680613793529533 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.19682566441863658 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income']
+0.19688036596050817 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income']
+0.19697422788312025 : ['adjusted beta', 'return last 3 month', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.1971206433306698 : ['volatility 90 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income']
+0.19726549065245025 : ['returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income', 'operational cash flow']
+0.1974442098385042 : ['return last 3 month', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'net income']
+0.1975345654975447 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.19759809371950987 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.1976939059881334 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'total assets']
+0.19771455425606954 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.19772311528334563 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income', 'total assets']
+0.19772448064682346 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow']
+0.1977633932469822 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.19796870060618063 : ['volatility 30 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.19799088699602685 : ['volatility 90 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.19805632485768598 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.19806557215191578 : ['volatility 90 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'operational cash flow']
+0.19819759152378114 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.19851001531454426 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.1985412620640078 : ['adjusted beta', 'volatility 90 days', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.19881540993361269 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'net income', 'operational cash flow']
+0.19892038865467454 : ['return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow', 'total assets']
+0.19899991225022828 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'gross profit', 'total assets']
+0.19913744121355292 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.19922510133487425 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.19927536831304538 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'gross profit', 'operational cash flow']
+0.19930985818811287 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.19951995709010717 : ['adjusted beta', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.1996147409958814 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'EPS', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income']
+0.1996532250738603 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.19972091677797044 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.19982464609033812 : ['return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'total assets']
+0.19999684047136546 : ['adjusted beta', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'gross profit', 'operational cash flow', 'total assets']
+0.20011833108416466 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'quick ratio', 'sale ravenue turnover', 'total assets']
+0.20014090573709628 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.2001792781758768 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'net income', 'operational cash flow', 'total assets']
+0.20030113201395094 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit', 'total assets']
+0.20032544532030205 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.20037742153126203 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.20053244930105288 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.2005461508685641 : ['return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'total assets']
+0.20060352161684047 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'gross profit', 'operational cash flow']
+0.20068823220691756 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.2007153912107058 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.20077030093548476 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'P/E', 'EPS', 'market cap', 'inventory turnover', 'operational cash flow']
+0.2009070114770133 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.2009484196810588 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'total assets']
+0.20133429838072447 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.2013434003264436 : ['volatility 30 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'operational cash flow', 'total assets']
+0.20135431090990652 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'operational cash flow', 'total assets']
+0.20143508046730918 : ['adjusted beta', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.20157946502289315 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'operational cash flow', 'total assets']
+0.20169066459711157 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.2020115393418499 : ['volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.20207588817063615 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.20219793637632033 : ['adjusted beta', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.20230980942065957 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.20243679193930766 : ['volatility 90 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.20244221606500512 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'net income']
+0.20254933295855226 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.20267135316398432 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio']
+0.20278483038152317 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.20282710983078367 : ['volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit', 'net income']
+0.2029756736939798 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.20303393913448065 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.20306762674401305 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'market cap', 'gross profit', 'net income', 'operational cash flow']
+0.20316252324542405 : ['volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio']
+0.203211040034319 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'EPS', 'market cap', 'sale ravenue turnover', 'gross profit']
+0.2033724609261648 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'P/E', 'market cap', 'quick ratio', 'gross profit']
+0.20337718980635422 : ['volatility 90 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.20342736251778215 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.20346025333685946 : ['return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'net income']
+0.20347834284470823 : ['return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.20355122983054164 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'gross profit', 'total assets']
+0.2037423911337615 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'P/E', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover']
+0.2037765866420932 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.20442019458859828 : ['volatility 90 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.20447615119056953 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.2044827427256023 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.20465470009076314 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.2049490785714262 : ['return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.20508771598232545 : ['return last 3 month', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'gross profit', 'net income', 'total assets']
+0.20520964776112227 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'operational cash flow']
+0.2052274263248165 : ['adjusted beta', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.20537564985582257 : ['volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.2054059859770114 : ['returns last 6 months', 'return last year', 'EPS', 'market cap', 'quick ratio', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.20544684850224126 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'operational cash flow']
+0.20544747866435856 : ['volatility 30 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'operational cash flow']
+0.20551540459106754 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio']
+0.2057040172576011 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'operational cash flow']
+0.20582461216694625 : ['returns last 6 months', 'return last year', 'P/E', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.20603368105106812 : ['return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income', 'operational cash flow']
+0.20618712445597662 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.20623504838747275 : ['adjusted beta', 'volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.20627532066978627 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'gross profit']
+0.20646247883955382 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.20653735380377036 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'quick ratio', 'gross profit']
+0.2066826344413052 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'market cap', 'gross profit', 'operational cash flow']
+0.20678293612888032 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.20680097011365092 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.20686323142322882 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'net income', 'total assets']
+0.2068740262862926 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.20692682660697123 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.20701275606206204 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.2071014246635149 : ['P/E', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.20716549892764524 : ['return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow', 'total assets']
+0.2072884858210684 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'total assets']
+0.2073679106391847 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'total assets']
+0.20738713519098384 : ['volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'operational cash flow']
+0.2074026486961148 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income', 'operational cash flow']
+0.207617931159924 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.2076644789347606 : ['return last 3 month', 'returns last 6 months', 'P/E', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income', 'total assets']
+0.20804308736653343 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow']
+0.20829037665314232 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'total assets']
+0.20831234470397197 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow']
+0.2083474899683051 : ['return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'total assets']
+0.20844432204251406 : ['adjusted beta', 'volatility 30 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow']
+0.20861786853474037 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'gross profit']
+0.20956790214251342 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.20965101280934997 : ['volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.2097369562407256 : ['volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.20974074813718535 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.20992228488477715 : ['volatility 360 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.20999266267012928 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow']
+0.21014455513961872 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.2101844863284973 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit', 'net income']
+0.21045089799951444 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.21052692920316451 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'gross profit', 'total assets']
+0.21069079599106222 : ['adjusted beta', 'volatility 30 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.2109086672936299 : ['volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.21107019024450924 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.21109344023350884 : ['volatility 90 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.2113904288444446 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'net income']
+0.2123779954028745 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.2123808315722453 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'net income']
+0.21258530616376614 : ['adjusted beta', 'volatility 30 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.21287791124605315 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit']
+0.2128830409501737 : ['volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.21303059651578293 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.21313942563598232 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'net income']
+0.21316018992900765 : ['returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'operational cash flow']
+0.21319544056349293 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.2132013960355336 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.2132915124296194 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow']
+0.21343879314775793 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.21358802499709184 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.21364070628603424 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.21368349668858255 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.21406094484912153 : ['volatility 30 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.21408388144627177 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'net income', 'total assets']
+0.21412154037964115 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.21428615768357906 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.214409533178911 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.21441346968032127 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.21450710112009386 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'operational cash flow']
+0.2145726875006747 : ['adjusted beta', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.21478553131838105 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.21487418798064073 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover']
+0.2149388316236415 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.21499879408227962 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'total assets']
+0.2151931146280136 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.21519547588105126 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover']
+0.21525367026741726 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.21533696007910363 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.21552776352737027 : ['volatility 30 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.21562980244226282 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'return last year', 'EPS', 'quick ratio', 'net income', 'operational cash flow']
+0.21573644719175544 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'sale ravenue turnover', 'gross profit']
+0.21574759975550617 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.216879721595856 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.21703149276852796 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow']
+0.21732894365371772 : ['volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.2173685035387141 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.21749157122169682 : ['returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'net income']
+0.21775011296909494 : ['return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.21781649378438983 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income']
+0.21781722135358303 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income']
+0.21788944695009138 : ['returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.21806308104637628 : ['volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.21829330045204687 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow', 'total assets']
+0.21856038923565735 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'total assets']
+0.2185760713312208 : ['returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.21878180839835293 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.21884585366448206 : ['return last year', 'P/E', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.21896584086631707 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'net income', 'total assets']
+0.21919316243518194 : ['returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.21954608363812678 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit']
+0.2196364243002784 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.21974934524275713 : ['volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.2199385551160299 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.22008076337433513 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'gross profit', 'operational cash flow']
+0.22009391714417925 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.2202475191845329 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.22092713470070136 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.22102314155729463 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.22119852022697914 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'sale ravenue turnover', 'gross profit']
+0.22119852050316102 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.22132119035401487 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.22138143988196798 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'total assets']
+0.22148102226908337 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.221673542255155 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.22170447998809883 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.22192981513503085 : ['volatility 360 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.2221467125601585 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.22286367686132724 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow', 'total assets']
+0.2232629309250609 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.2236809814678311 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'operational cash flow', 'total assets']
+0.2237342244807473 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.2237752515687134 : ['returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.22380911970833928 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.22418845654708494 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow']
+0.2242171121817376 : ['adjusted beta', 'volatility 30 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.22451480382493072 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.22462860145423624 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.22465604665846597 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.22479129083451843 : ['volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'net income', 'total assets']
+0.2248390013744781 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.22532585721460585 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.2254001255154403 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last 3 month', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover']
+0.22588288824350644 : ['volatility 30 days', 'return last 3 month', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'net income', 'total assets']
+0.22622102471317737 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.226549445456819 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.22664050282077233 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.22676227379310235 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'total assets']
+0.2268422034807136 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.22696811312602574 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.22714988653156531 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.22735478541683551 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.22766940398317181 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.2278707349144744 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.2278946258139629 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'net income', 'operational cash flow']
+0.22821195938416752 : ['adjusted beta', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income']
+0.2282122835962006 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.2284754632273126 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.2287371629338746 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'operational cash flow', 'total assets']
+0.22907404881822968 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover']
+0.22912471000538615 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.22929051455521732 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'operational cash flow', 'total assets']
+0.22936539880037843 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'total assets']
+0.22969604040948333 : ['return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.2297674065510238 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.23064284483243735 : ['volatility 30 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'gross profit', 'total assets']
+0.23282220494076455 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.23285119465862011 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.23311935879731582 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.23320421776267009 : ['volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.23390985240748755 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow']
+0.2342517476250866 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.23452425242483801 : ['return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow', 'total assets']
+0.23461406619969938 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'market cap', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.2350085211630466 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.23591409070951463 : ['volatility 90 days', 'return last 3 month', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income']
+0.23615558113020763 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'net income', 'operational cash flow']
+0.23711388261602653 : ['volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income', 'total assets']
+0.23772304135701997 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.23838640650932794 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'net income']
+0.2401863926759834 : ['volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income']
+0.24084069789971285 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.24090502563251126 : ['return last 3 month', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.24143720457593032 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.24166410654723658 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'gross profit']
+0.2421884274294661 : ['volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.242302008421876 : ['volatility 360 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.24340232386257807 : ['adjusted beta', 'volatility 360 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.24369133441216895 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.2455636599364165 : ['return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.24802863483792956 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.24809123889246162 : ['volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.24811038149657116 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit']
+0.2493974286665599 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.25011638923579127 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income']
+0.25391414620811026 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.25467721719266057 : ['return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.25539722276894306 : ['adjusted beta', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow']
+0.2591044917066786 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'net income']
+0.25944227936512954 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.2607080152672083 : ['volatility 360 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.2624893906293334 : ['volatility 90 days', 'return last year', 'P/E', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit', 'total assets']
+0.26311823360150577 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.26626399493674713 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.2700562667149823 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.27362573282109504 : ['adjusted beta', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income', 'total assets']
+0.27810190436386506 : ['return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income']
+0.28075908518584247 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.28251874860396975 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.29777857418653464 : ['volatility 90 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.3043861578455618 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+
+
+###################################### 1 - 7 features correlations
+
+0.20005738495 : ['adjusted beta', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.200075194791 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'operational cash flow', 'total assets']
+0.200077514205 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'total assets']
+0.20017467027 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.200199694291 : ['return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income']
+0.200300567727 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.200326115888 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.200355040775 : ['return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.200395772631 : ['returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.200398234917 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.20044173317 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'operational cash flow']
+0.200554333782 : ['volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'operational cash flow']
+0.200591456314 : ['volatility 360 days', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.20064549278 : ['return last year', 'P/E', 'EPS', 'market cap', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.200711241946 : ['volatility 30 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.20076094451 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'operational cash flow']
+0.200776777749 : ['return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'net income']
+0.200787755282 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.200832381667 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.200917340953 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'operational cash flow', 'total assets']
+0.200920093648 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.200929254269 : ['adjusted beta', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.201020231574 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.201020677853 : ['return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.201039768132 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.201054857267 : ['volatility 360 days', 'returns last 6 months', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover']
+0.20119051123 : ['volatility 360 days', 'return last 3 month', 'return last year', 'EPS', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.201210712813 : ['returns last 6 months', 'EPS', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.201274365175 : ['adjusted beta', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.201284189337 : ['adjusted beta', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.20141989366 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.201424642965 : ['volatility 90 days', 'return last 3 month', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.20149990399 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.201539999827 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover']
+0.201542180933 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.201569361864 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'gross profit', 'total assets']
+0.201606986573 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'gross profit']
+0.201627885208 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.201696876293 : ['adjusted beta', 'return last 3 month', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.201731621444 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.201808880597 : ['volatility 90 days', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.201843679673 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'inventory turnover', 'sale ravenue turnover', 'net income', 'total assets']
+0.201880620297 : ['returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.201890866278 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.201927035518 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'net income', 'operational cash flow']
+0.201931337421 : ['volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit', 'total assets']
+0.201989033579 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.202054696633 : ['returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.202135046366 : ['volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.202206266097 : ['return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.202253713085 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover']
+0.202309090952 : ['return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.20246893249 : ['return last year', 'EPS', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.202503804678 : ['volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.202525217532 : ['returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.202648752425 : ['volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.202670914973 : ['return last 3 month', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.202680478662 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.202801911293 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.202887453535 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'gross profit']
+0.203005320657 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover']
+0.203107311877 : ['return last 3 month', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'total assets']
+0.203131460599 : ['return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.203203098251 : ['return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow', 'total assets']
+0.203292873242 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.203309285104 : ['returns last 6 months', 'market cap', 'quick ratio', 'inventory turnover', 'total assets']
+0.20338839427 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.203395393783 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income', 'total assets']
+0.203484437126 : ['return last year', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.203547505633 : ['volatility 360 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.203621719439 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.203642661291 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio']
+0.203660164934 : ['volatility 90 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.203694866847 : ['return last 3 month', 'returns last 6 months', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.203704226238 : ['return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.203708913776 : ['return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.203755548343 : ['volatility 90 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.203772969607 : ['adjusted beta', 'return last year', 'P/E', 'EPS', 'quick ratio', 'inventory turnover', 'gross profit', 'total assets']
+0.203773177752 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.203780082655 : ['return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'net income']
+0.203809866537 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'net income', 'operational cash flow', 'total assets']
+0.203855870382 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'net income']
+0.203869727826 : ['return last 3 month', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.203890721535 : ['adjusted beta', 'returns last 6 months', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.203943327123 : ['volatility 30 days', 'return last year', 'P/E', 'EPS', 'market cap', 'quick ratio', 'inventory turnover', 'net income']
+0.203950970452 : ['volatility 30 days', 'return last year', 'sale ravenue turnover', 'gross profit', 'net income']
+0.204048723368 : ['return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.204078284052 : ['volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'net income']
+0.204098541086 : ['adjusted beta', 'returns last 6 months', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.204179154177 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'quick ratio', 'inventory turnover', 'net income']
+0.204209714974 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'net income']
+0.204232637446 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'total assets']
+0.20424460303 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'market cap', 'inventory turnover', 'total assets']
+0.204245154023 : ['adjusted beta', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.204309865883 : ['adjusted beta', 'return last year', 'EPS', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.204309956325 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.204355581746 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'total assets']
+0.204379268413 : ['return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow', 'total assets']
+0.20442793463 : ['volatility 360 days', 'return last 3 month', 'return last year', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.20443205602 : ['returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.204438655975 : ['volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.204510487607 : ['volatility 30 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.20455797637 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'net income']
+0.204602003315 : ['adjusted beta', 'return last year', 'P/E', 'EPS', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.204657228772 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'quick ratio', 'sale ravenue turnover', 'operational cash flow']
+0.204672845647 : ['return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.204693733665 : ['volatility 90 days', 'return last 3 month', 'return last year', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow', 'total assets']
+0.20469802697 : ['return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.204702480347 : ['return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.204740466133 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'EPS', 'market cap', 'quick ratio', 'net income']
+0.204772104024 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'total assets']
+0.204811026457 : ['return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.204813439704 : ['volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.204815101056 : ['volatility 30 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.204837136083 : ['return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.204857811806 : ['return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.204859932685 : ['volatility 30 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.204863638301 : ['return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.20487277761 : ['return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.204972188515 : ['return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.204986291072 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'EPS', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.205010294168 : ['returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.205035143433 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit']
+0.205061365358 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.205105072634 : ['volatility 90 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'operational cash flow', 'total assets']
+0.205108648697 : ['volatility 90 days', 'return last year', 'P/E', 'market cap', 'inventory turnover', 'gross profit', 'net income', 'total assets']
+0.205200574525 : ['adjusted beta', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.205359695003 : ['volatility 360 days', 'return last year', 'market cap', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.205392790159 : ['returns last 6 months', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.205410385579 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'gross profit', 'net income']
+0.205431746151 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.205469628573 : ['return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.205519485167 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.205582494247 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.205616641875 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit']
+0.2056226076 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'net income', 'total assets']
+0.20562976886 : ['return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.205647108881 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'quick ratio', 'sale ravenue turnover', 'net income', 'operational cash flow', 'total assets']
+0.205673257875 : ['return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income', 'total assets']
+0.205729667284 : ['volatility 30 days', 'return last year', 'EPS', 'market cap', 'quick ratio', 'gross profit', 'net income']
+0.205749745849 : ['volatility 360 days', 'return last 3 month', 'return last year', 'inventory turnover', 'net income', 'total assets']
+0.205839624549 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'sale ravenue turnover', 'net income']
+0.205898115678 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income']
+0.205904882385 : ['volatility 360 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.205934010123 : ['volatility 30 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit']
+0.205997144547 : ['volatility 90 days', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.206056842971 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'market cap', 'inventory turnover', 'net income', 'operational cash flow', 'total assets']
+0.206059141646 : ['volatility 90 days', 'return last 3 month', 'return last year', 'EPS', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.206092536153 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'net income']
+0.206115279102 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.206147859562 : ['returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.206186986071 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.206291524248 : ['volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.206388483957 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'inventory turnover']
+0.206410447627 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.206453990561 : ['returns last 6 months', 'return last year', 'P/E', 'market cap', 'inventory turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.20645444178 : ['volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'net income', 'operational cash flow']
+0.206567343398 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income']
+0.206623618357 : ['volatility 90 days', 'return last year', 'P/E', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.20674390641 : ['return last 3 month', 'return last year', 'EPS', 'market cap', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.206772762635 : ['adjusted beta', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.206804553332 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit']
+0.206914160376 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'operational cash flow']
+0.206927726758 : ['adjusted beta', 'volatility 90 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'net income', 'total assets']
+0.207340424673 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'gross profit', 'net income']
+0.207348024713 : ['volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'operational cash flow', 'total assets']
+0.2074222128 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'net income']
+0.207488557886 : ['volatility 90 days', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'quick ratio', 'gross profit', 'operational cash flow']
+0.207505174042 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.207530640609 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.207556685422 : ['return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.207599788328 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'net income', 'total assets']
+0.207701599846 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.207744482244 : ['return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.207799543171 : ['returns last 6 months', 'return last year', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.207858076681 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit']
+0.207973883646 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.208001260489 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.208098601921 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income']
+0.208142807497 : ['volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income', 'total assets']
+0.208147541957 : ['adjusted beta', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.208237189796 : ['adjusted beta', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.208259734722 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.208291750581 : ['return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.208293524913 : ['volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'total assets']
+0.2083171791 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.208458687711 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.208550186287 : ['return last 3 month', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'net income', 'total assets']
+0.208555093081 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.208632274733 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.208673277572 : ['volatility 30 days', 'return last year', 'EPS', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow']
+0.208755362727 : ['volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.208906440598 : ['volatility 30 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.20895659061 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'total assets']
+0.209029010776 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.209053170593 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'market cap', 'gross profit', 'total assets']
+0.20920730439 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.20921054436 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'net income']
+0.209369857628 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover']
+0.209388826821 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.209431022043 : ['return last year', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.209452512789 : ['return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.209499440357 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.20957189201 : ['volatility 90 days', 'return last year', 'EPS', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.209796362823 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'net income']
+0.209819097776 : ['volatility 90 days', 'returns last 6 months', 'market cap', 'inventory turnover', 'gross profit', 'net income']
+0.209930227849 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'P/E', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.210042045246 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'gross profit', 'operational cash flow', 'total assets']
+0.210181278958 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.210203767681 : ['return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover']
+0.210209052864 : ['return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income', 'total assets']
+0.210425520382 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.21072434312 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.210795028199 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'inventory turnover']
+0.210955691895 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'EPS', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.210967405809 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.211092819315 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.211185286248 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.211289317727 : ['return last year', 'P/E', 'market cap', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.211425130076 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'gross profit']
+0.211439906025 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.211544129634 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.211559503307 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'gross profit', 'net income', 'total assets']
+0.211685801648 : ['adjusted beta', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.211707776871 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.211735447964 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover']
+0.211816414388 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'gross profit', 'net income']
+0.211824432157 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.211904522642 : ['return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.211907936381 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'quick ratio', 'operational cash flow', 'total assets']
+0.212106512699 : ['adjusted beta', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.212137740606 : ['return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.212181892178 : ['returns last 6 months', 'return last year', 'P/E', 'gross profit']
+0.212301338104 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.212474120425 : ['volatility 90 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'operational cash flow']
+0.212494650791 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow', 'total assets']
+0.212656026785 : ['adjusted beta', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'total assets']
+0.212689231784 : ['adjusted beta', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'operational cash flow', 'total assets']
+0.212798237827 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.212807607324 : ['return last year', 'quick ratio', 'inventory turnover', 'net income']
+0.212999549195 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'inventory turnover', 'gross profit', 'total assets']
+0.213024282988 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'gross profit']
+0.213173835555 : ['adjusted beta', 'volatility 360 days', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.213304970883 : ['returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'quick ratio', 'inventory turnover', 'total assets']
+0.213394253496 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.213569989923 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.213611973553 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.213818440462 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.214008731077 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.214011307767 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.214069691498 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.214182120645 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.214229240124 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'net income']
+0.214237170618 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'net income']
+0.214275836185 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit']
+0.214363833269 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow', 'total assets']
+0.214442147753 : ['volatility 360 days', 'return last 3 month', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'gross profit']
+0.214551664564 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit']
+0.214672236994 : ['adjusted beta', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.214879664048 : ['returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'net income', 'operational cash flow', 'total assets']
+0.214884346647 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'net income']
+0.214901499913 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.214922876273 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit']
+0.215056424332 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'gross profit', 'net income', 'operational cash flow']
+0.215090953286 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.215147055675 : ['return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'net income']
+0.215226561901 : ['adjusted beta', 'volatility 30 days', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.215377505778 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.215522363574 : ['volatility 360 days', 'return last year', 'P/E', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.215622462447 : ['adjusted beta', 'returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.21575447799 : ['volatility 90 days', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'total assets']
+0.21585680159 : ['adjusted beta', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow', 'total assets']
+0.215914016138 : ['adjusted beta', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.215993656015 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.216066065556 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'total assets']
+0.216133255904 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income']
+0.216145866551 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.216177842233 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.21620007742 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover']
+0.216249418998 : ['volatility 90 days', 'return last year', 'market cap', 'inventory turnover', 'operational cash flow']
+0.216250856762 : ['return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.216600199881 : ['adjusted beta', 'volatility 30 days', 'return last year', 'returns last 5 years', 'quick ratio', 'operational cash flow']
+0.216675224125 : ['volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'gross profit', 'net income', 'total assets']
+0.216914298476 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.217016867428 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'market cap', 'inventory turnover', 'net income']
+0.217107867259 : ['adjusted beta', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'operational cash flow', 'total assets']
+0.217633266801 : ['volatility 360 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.217695436682 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'operational cash flow']
+0.217697607944 : ['volatility 90 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover']
+0.217706305659 : ['volatility 30 days', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.217856886597 : ['returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.218067774171 : ['return last 3 month', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.218185188822 : ['volatility 360 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.21826242882 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'gross profit']
+0.218313808296 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.218486673555 : ['volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.218521087702 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.218754143269 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.218783755814 : ['volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income']
+0.218867937279 : ['adjusted beta', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income']
+0.219160422837 : ['volatility 360 days', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.219378908479 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'operational cash flow']
+0.219725087915 : ['returns last 6 months', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.219775065184 : ['return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'total assets']
+0.2197888092 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'gross profit', 'net income', 'total assets']
+0.219800228456 : ['return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.219877658072 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'net income']
+0.220215689512 : ['volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.220237886726 : ['adjusted beta', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.220250212965 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.220304091579 : ['volatility 90 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.220450964429 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'operational cash flow']
+0.220494708496 : ['return last 3 month', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.220531046287 : ['return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.220609851801 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'gross profit', 'net income', 'total assets']
+0.220813418764 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.220845159175 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.220908935596 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.221109996011 : ['volatility 90 days', 'return last 3 month', 'return last year', 'P/E', 'quick ratio', 'inventory turnover', 'gross profit', 'net income']
+0.221158694715 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'quick ratio', 'gross profit']
+0.221226287093 : ['volatility 30 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'net income', 'total assets']
+0.22146966477 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.22147396173 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.221775005116 : ['adjusted beta', 'volatility 90 days', 'return last year', 'quick ratio', 'inventory turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.22211520757 : ['volatility 30 days', 'return last 3 month', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.222135642364 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.222247862243 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit']
+0.222298600602 : ['adjusted beta', 'volatility 30 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio']
+0.222378012536 : ['return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income', 'total assets']
+0.222381953012 : ['return last 3 month', 'return last year', 'market cap', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'net income', 'total assets']
+0.222396181045 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.222503098332 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'quick ratio', 'inventory turnover']
+0.222618570007 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'gross profit']
+0.222831950943 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'inventory turnover', 'gross profit']
+0.222862233806 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'total assets']
+0.223047638985 : ['adjusted beta', 'return last 3 month', 'return last year', 'EPS', 'market cap', 'gross profit', 'net income']
+0.22312894692 : ['volatility 30 days', 'return last year', 'market cap', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow', 'total assets']
+0.223210717352 : ['adjusted beta', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.223316028232 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'sale ravenue turnover', 'net income']
+0.223767429546 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'return last year', 'quick ratio', 'gross profit']
+0.223854339769 : ['return last 3 month', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.223870803841 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'net income']
+0.22390771337 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.224032477926 : ['volatility 30 days', 'return last year', 'P/E', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.224067580977 : ['return last 3 month', 'return last year', 'P/E', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow', 'total assets']
+0.224333050959 : ['return last 3 month', 'returns last 6 months', 'EPS', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.224516149605 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'net income']
+0.224565629702 : ['return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'net income']
+0.224717254745 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'net income']
+0.225011506186 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'EPS', 'returns last 5 years', 'quick ratio', 'net income']
+0.225302599571 : ['adjusted beta', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.225945387073 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income']
+0.225951482367 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.226132112523 : ['adjusted beta', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.226175100087 : ['return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.226204513594 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover']
+0.226492826651 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit']
+0.22675909583 : ['return last 3 month', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'operational cash flow', 'total assets']
+0.226780240057 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.226903927417 : ['return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.226909710555 : ['volatility 90 days', 'return last 3 month', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.227036584338 : ['adjusted beta', 'volatility 90 days', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'sale ravenue turnover', 'net income']
+0.227133291514 : ['adjusted beta', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit']
+0.227515391444 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.227585039437 : ['volatility 90 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.227750242585 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last year', 'inventory turnover', 'net income']
+0.22797610974 : ['volatility 30 days', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'net income']
+0.228158118324 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.228255413351 : ['adjusted beta', 'volatility 30 days', 'return last year', 'market cap', 'gross profit', 'net income']
+0.228508106147 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.228571121401 : ['adjusted beta', 'volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'net income']
+0.228607379897 : ['volatility 360 days', 'return last 3 month', 'return last year', 'inventory turnover']
+0.228745114979 : ['volatility 30 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.228777915991 : ['adjusted beta', 'volatility 90 days', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'gross profit', 'total assets']
+0.228998140789 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income']
+0.229059729663 : ['return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.229157218409 : ['adjusted beta', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'gross profit', 'net income', 'operational cash flow']
+0.229558044693 : ['return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'inventory turnover', 'operational cash flow', 'total assets']
+0.229831144065 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.230018993388 : ['adjusted beta', 'volatility 30 days', 'return last year', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.230379964229 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'gross profit']
+0.230424850554 : ['volatility 360 days', 'return last year', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.230532704453 : ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover']
+0.230572445963 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.230780060435 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'net income', 'total assets']
+0.231278707796 : ['adjusted beta', 'return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'operational cash flow']
+0.23209842945 : ['volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'gross profit', 'total assets']
+0.232107246993 : ['return last year', 'market cap', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow']
+0.232178452051 : ['returns last 6 months', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'net income']
+0.232372356201 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.232564397976 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'inventory turnover', 'sale ravenue turnover']
+0.232731958657 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'quick ratio', 'gross profit', 'net income']
+0.232891509554 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.233160953377 : ['volatility 360 days', 'return last year', 'EPS', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.23346279625 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'gross profit']
+0.233722756126 : ['volatility 30 days', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'operational cash flow']
+0.233865389246 : ['volatility 90 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income', 'operational cash flow', 'total assets']
+0.234180420598 : ['volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'sale ravenue turnover', 'gross profit']
+0.234316142854 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'total assets']
+0.234624422065 : ['return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'net income', 'operational cash flow']
+0.234807653783 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'gross profit', 'net income']
+0.234922014795 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.234923083593 : ['volatility 30 days', 'return last 3 month', 'return last year', 'quick ratio', 'inventory turnover', 'gross profit', 'net income']
+0.235197892943 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'total assets']
+0.235382446098 : ['volatility 30 days', 'return last 3 month', 'return last year', 'EPS', 'returns last 5 years', 'inventory turnover', 'operational cash flow', 'total assets']
+0.235606320428 : ['adjusted beta', 'volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'gross profit', 'total assets']
+0.235721894075 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.235994978913 : ['volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'net income', 'total assets']
+0.236586448793 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'market cap', 'inventory turnover', 'operational cash flow']
+0.23678065719 : ['volatility 30 days', 'volatility 360 days', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.23745208698 : ['volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit', 'net income']
+0.237452260397 : ['return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow']
+0.237648244099 : ['return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.238393373368 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'net income']
+0.239011348491 : ['volatility 90 days', 'return last year', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow', 'total assets']
+0.239096332913 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.239644417898 : ['returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.240328339372 : ['adjusted beta', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'total assets']
+0.240396780119 : ['adjusted beta', 'volatility 360 days', 'returns last 6 months', 'return last year', 'EPS', 'market cap', 'gross profit', 'operational cash flow']
+0.240436454619 : ['volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'net income']
+0.240899993323 : ['adjusted beta', 'volatility 90 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover']
+0.241207853304 : ['volatility 30 days', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'inventory turnover', 'gross profit', 'total assets']
+0.24178438564 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.241836386137 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.242288834327 : ['volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'operational cash flow']
+0.242299489263 : ['return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'net income']
+0.242993068897 : ['volatility 360 days', 'return last year', 'P/E', 'market cap', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.243001599781 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'net income', 'operational cash flow']
+0.243124735751 : ['adjusted beta', 'volatility 360 days', 'return last 3 month', 'return last year', 'market cap', 'inventory turnover', 'gross profit', 'net income']
+0.243936749335 : ['volatility 30 days', 'volatility 360 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit']
+0.244645203265 : ['volatility 360 days', 'return last year', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit']
+0.244812789926 : ['volatility 30 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'sale ravenue turnover', 'gross profit', 'operational cash flow']
+0.244829460464 : ['return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.247526545258 : ['volatility 30 days', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'gross profit']
+0.247805225592 : ['volatility 30 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'net income']
+0.247980939002 : ['return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years', 'inventory turnover', 'total assets']
+0.248147013008 : ['returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit', 'operational cash flow']
+0.24837841534 : ['volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover']
+0.249534599089 : ['volatility 90 days', 'volatility 360 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.249938897688 : ['volatility 90 days', 'volatility 360 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'operational cash flow', 'total assets']
+0.251411619987 : ['adjusted beta', 'returns last 6 months', 'return last year', 'P/E', 'EPS', 'returns last 5 years', 'gross profit']
+0.252421746615 : ['adjusted beta', 'volatility 30 days', 'returns last 6 months', 'return last year', 'market cap', 'quick ratio', 'net income', 'total assets']
+0.254030723248 : ['return last 3 month', 'return last year', 'P/E', 'market cap', 'quick ratio', 'inventory turnover', 'gross profit', 'net income']
+0.25542178821 : ['volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'quick ratio', 'sale ravenue turnover', 'operational cash flow']
+0.255995355199 : ['volatility 30 days', 'return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.257426002789 : ['volatility 30 days', 'return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.257445891368 : ['volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover', 'gross profit']
+0.259248699161 : ['return last 3 month', 'returns last 6 months', 'return last year', 'returns last 5 years', 'quick ratio', 'gross profit', 'operational cash flow', 'total assets']
+0.259605890823 : ['returns last 6 months', 'return last year', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'net income', 'operational cash flow', 'total assets']
+0.260411580992 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'total assets']
+0.262424321508 : ['adjusted beta', 'volatility 90 days', 'return last 3 month', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.263798840291 : ['volatility 90 days', 'return last year', 'P/E', 'returns last 5 years', 'inventory turnover', 'net income']
+0.26721251063 : ['volatility 30 days', 'volatility 90 days', 'return last 3 month', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'sale ravenue turnover']
+0.269190000729 : ['return last 3 month', 'return last year', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'sale ravenue turnover', 'total assets']
+0.274250545833 : ['return last year', 'EPS', 'market cap', 'returns last 5 years', 'sale ravenue turnover', 'gross profit', 'operational cash flow', 'total assets']
+0.276908632805 : ['return last year', 'P/E', 'returns last 5 years', 'quick ratio', 'inventory turnover', 'operational cash flow']
+0.278839404642 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'operational cash flow']
+0.278912105465 : ['adjusted beta', 'volatility 90 days', 'return last year', 'market cap', 'returns last 5 years', 'inventory turnover', 'gross profit', 'operational cash flow']
+0.285434695687 : ['returns last 6 months', 'return last year', 'market cap', 'returns last 5 years', 'gross profit', 'operational cash flow']
+
+### removed quartile 4 (outliers), plotted linear regression and extracted r-value from scipy.stats
+
+adjusted beta has correlation of -0.0393221754458 and R-squared: 0.00154623348179
+volatility 30 days has correlation of 0.149727867921 and R-squared: 0.0224184344323
+volatility 90 days has correlation of 0.0941052377524 and R-squared: 0.00885579577243
+volatility 360 days has correlation of 0.0798041676132 and R-squared: 0.00636870516844
+return last 3 month has correlation of 0.139856932363 and R-squared: 0.01955996153
+returns last 6 months has correlation of 0.11159096289 and R-squared: 0.0124525429987
+return last year has correlation of 0.086187041431 and R-squared: 0.00742820611064
+P/E has correlation of 0.131394122636 and R-squared: 0.0172644154633
+EPS has correlation of -0.0927851454086 and R-squared: 0.00860908320849
+market cap has correlation of 0.22037142905 and R-squared: 0.0485635667414
+returns last 5 years has correlation of -0.0850579753768 and R-squared: 0.0072348591752
+quick ratio has correlation of -0.0187334779528 and R-squared: 0.000350943196207
+inventory turnover has correlation of 0.0190457947253 and R-squared: 0.000362742296719
+sale ravenue turnover has correlation of 0.0777259427998 and R-squared: 0.00604132218412
+gross profit has correlation of 0.0525008939781 and R-squared: 0.0027563438685
+net income has correlation of -0.0220337837714 and R-squared: 0.000485487627285
+operational cash flow has correlation of 0.0967731972161 and R-squared: 0.00936505169942
+total assets has correlation of 0.12163705378 and R-squared: 0.0147955728522
+
+""" Second iteration regression - with data trends """
+
+REG
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.00
+
+LSVR
+Mean squared error: 4.26
+Mean absolute error: 1.03
+R^2 coefficient: -13.98
+
+SVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.00
+
+
+NuSVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.00
+
+KNN
+Mean squared error: 0.31
+Mean absolute error: 0.45
+R^2 coefficient: -0.10
+
+TREE
+Mean squared error: 0.50
+Mean absolute error: 0.56
+R^2 coefficient: -0.76
+
+GTB # This problem is unconstrained
+Mean squared error: 0.30
+Mean absolute error: 0.44
+R^2 coefficient: -0.05
+
+MPR # better with 4 folds than 10
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.02
+
+""" Added fundamental data for december to trends """
+
+REG
+Mean squared error: 0.30
+Mean absolute error: 0.44
+R^2 coefficient: -0.05
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSVR
+Mean squared error: 229.26
+Mean absolute error: 3.21
+R^2 coefficient: -804.69
+
+SVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+NuSVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+KNN
+Mean squared error: 0.32
+Mean absolute error: 0.45
+R^2 coefficient: -0.11
+
+TREE
+Mean squared error: 0.49
+Mean absolute error: 0.56
+R^2 coefficient: -0.71
+
+GTB # This problem is unconstrained
+Mean squared error: 0.27
+Mean absolute error: 0.42
+R^2 coefficient: 0.04
+
+MPR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.02
+
+""" Applied non-linear trasnformation before prediction """
+
+REG
+Mean squared error: 0.26
+Mean absolute error: 0.41
+R^2 coefficient: 0.07
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSVR
+Mean squared error: 0.26
+Mean absolute error: 0.41
+R^2 coefficient: 0.07
+
+SVR
+Mean squared error: 0.26
+Mean absolute error: 0.40
+R^2 coefficient: 0.08
+
+NuSVR
+Mean squared error: 0.26
+Mean absolute error: 0.41
+R^2 coefficient: 0.09
+KNN
+Mean squared error: 0.29
+Mean absolute error: 0.43
+R^2 coefficient: -0.01
+
+TREE
+Mean squared error: 0.49
+Mean absolute error: 0.56
+R^2 coefficient: -0.71
+
+GTB
+Mean squared error: 0.27
+Mean absolute error: 0.42
+R^2 coefficient: 0.03
+
+MPR
+Mean squared error: 0.33
+Mean absolute error: 0.45
+R^2 coefficient: -0.15
+
+""" Applied standardization and absolute scaling [-1,1] """
+
+REG
+Mean squared error: 0.30
+Mean absolute error: 0.44
+R^2 coefficient: -0.05
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+SVR
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.01
+
+NuSVR
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.01
+
+KNN
+Mean squared error: 0.32
+Mean absolute error: 0.46
+R^2 coefficient: -0.12
+
+TREE
+Mean squared error: 0.48
+Mean absolute error: 0.55
+R^2 coefficient: -0.68
+
+GTB
+Mean squared error: 0.27
+Mean absolute error: 0.42
+R^2 coefficient: 0.04
+
+MPR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.02
+
+""" Scaled to range [0, 1] """
+
+REG
+Mean squared error: 0.30
+Mean absolute error: 0.44
+R^2 coefficient: -0.05
+
+LSS
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
+
+LSVR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.00
+
+SVR
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.02
+
+NuSVR
+Mean squared error: 0.28
+Mean absolute error: 0.43
+R^2 coefficient: 0.02
+
+KNN
+Mean squared error: 0.31
+Mean absolute error: 0.46
+R^2 coefficient: -0.11
+
+TREE
+Mean squared error: 0.48
+Mean absolute error: 0.55
+R^2 coefficient: -0.69
+
+GTB
+Mean squared error: 0.28
+Mean absolute error: 0.42
+R^2 coefficient: 0.03
+
+MPR
+Mean squared error: 0.29
+Mean absolute error: 0.44
+R^2 coefficient: -0.01
