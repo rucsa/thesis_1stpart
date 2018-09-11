@@ -41,7 +41,7 @@ def generate_new_color(existing_colors,pastel_factor = 0.5):
 
 def scaleOutMarketCap (df, features):
     for feature in features:
-        df.loc[:,feature] = df.loc[:,feature]/df.loc[:,'market cap'] * 10000
+        df.loc[:,feature] = df.loc[:,feature]/df.loc[:,'Market_cap'] * 10000
     return df
 
 def categoricalToNumeric (df, encoder):
@@ -50,7 +50,7 @@ def categoricalToNumeric (df, encoder):
     return df
 
 def encodeMarketCap(df):
-    mc = list((df.loc[:,'market cap'] * 1000000).values)
+    mc = list((df.loc[:,'Market_cap'] * 1000000).values)
     for i in range (0, len(mc)):
         if (10000000000 <= mc[i] ):
             mc[i] = 4 #'large cap'
@@ -142,10 +142,10 @@ def featuresCorrWithoutOutliers(features, mainDataFrame, model):
         print ('computing {} features'.format(i))
         for feature_set in combinations(features, i):
             feature_set = list(feature_set)
-            feature_set.append('analyst rating')
+            feature_set.append('ANR')
             X = mainDataFrame.loc[:, feature_set].dropna()
-            y = X.loc[:, 'analyst rating']
-            X = X.drop(['analyst rating'], axis=1)
+            y = X.loc[:, 'ANR']
+            X = X.drop(['ANR'], axis=1)
     
             X_train, X_test, y_train, y_test = train_test_split(X, y)
             model.fit(X_train, y_train)
@@ -159,7 +159,7 @@ def featuresCorrWithoutOutliers(features, mainDataFrame, model):
             r = model.score(X_test, y_test)
             #print ('Mean squared error = {}'.format(mse))
             #print ('lreg R_squared is {} | Calculated R_squared is {}\n'.format(r, 1-(ss_res/ss_tot)))
-            feature_set.remove('analyst rating')
+            feature_set.remove('ANR')
             key = [feature_set]
             results[r] = key
             count = count + 1

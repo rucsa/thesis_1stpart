@@ -6,8 +6,8 @@ from scipy import stats
 import statsmodels.api as sm
 
 
-X = pd.read_hdf('data.hdf5', 'Datataset1/X')
-anr = X['analyst rating']
+X = pd.read_hdf('data.hdf5', 'Datataset1/X', format='table')
+anr = X['ANR']
 #data = X[['return last year', 'P/E', 'volatility 360 days', 'analyst rating']]
 #data = X[['return last year', 'volatility 360 days', 'analyst rating']]
 data = X
@@ -27,62 +27,62 @@ remove_outliers = True
 
 
 if remove_outliers:
-    data = data.loc[data['adjusted beta'] >= -4]
-    data = data.loc[data['adjusted beta'] <= 4]
+    data = data.loc[data['Adjusted_beta'] >= -4]
+    data = data.loc[data['Adjusted_beta'] <= 4]
     
-    data = data.loc[data['volatility 30 days'] >= -1.8]
-    data = data.loc[data['volatility 30 days'] <= 6]
+    data = data.loc[data['Volatility_30'] >= -1.8]
+    data = data.loc[data['Volatility_30'] <= 6]
     
-    data = data.loc[data['volatility 90 days'] >= -1.9]
-    data = data.loc[data['volatility 90 days'] <= 4.5]
+    data = data.loc[data['Volatility_90'] >= -1.9]
+    data = data.loc[data['Volatility_90'] <= 4.5]
     
-    data = data.loc[data['volatility 360 days'] >= -2]
-    data = data.loc[data['volatility 360 days'] <= 3.5]
+    data = data.loc[data['Volatility_360'] >= -2]
+    data = data.loc[data['Volatility_360'] <= 3.5]
     
-    data = data.loc[data['return last 3 month'] >= -2.5]
-    data = data.loc[data['return last 3 month'] <= 4.3]
+    data = data.loc[data['Returns_3_months'] >= -2.5]
+    data = data.loc[data['Returns_3_months'] <= 4.3]
     
-    data = data.loc[data['returns last 6 months'] >= -2.5]
-    data = data.loc[data['returns last 6 months'] <= 4]
+    data = data.loc[data['Returns_6_months'] >= -2.5]
+    data = data.loc[data['Returns_6_months'] <= 4]
     
-    data = data.loc[data['return last year'] >= -2.5]
-    data = data.loc[data['return last year'] <= 5.5]
+    data = data.loc[data['Return_last_year'] >= -2.5]
+    data = data.loc[data['Return_last_year'] <= 5.5]
     
-    data = data.loc[data['returns last 5 years'] >= -3]
-    data = data.loc[data['returns last 5 years'] <= 10]
+    data = data.loc[data['Returns_5_years'] >= -3]
+    data = data.loc[data['Returns_5_years'] <= 10]
     
-    data = data.loc[data['P/E'] >= -0.5]
-    data = data.loc[data['P/E'] <= 15]
+    data = data.loc[data['PE'] >= -0.5]
+    data = data.loc[data['PE'] <= 15]
     
     data = data.loc[data['EPS'] >= -4.5]
     data = data.loc[data['EPS'] <= 10]
 
-    data = data.loc[data['market cap'] <= 10.5]
+    data = data.loc[data['Market_cap'] <= 10.5]
     
-    data = data.loc[data['quick ratio'] <= 7.8]
+    data = data.loc[data['Quick_ratio'] <= 7.8]
     
-    data = data.loc[data['inventory turnover'] >= -0.5]
-    data = data.loc[data['inventory turnover'] <= 4.8]
+    data = data.loc[data['Inventory_turnover'] >= -0.5]
+    data = data.loc[data['Inventory_turnover'] <= 4.8]
     
-    data = data.loc[data['revenu'] >= -1]
-    data = data.loc[data['revenu'] <= 10]
+    data = data.loc[data['Revenue'] >= -1]
+    data = data.loc[data['Revenue'] <= 10]
     
-    data = data.loc[data['gross profit'] >= -1]
-    data = data.loc[data['gross profit'] <= 8]
+    data = data.loc[data['Gross_profit'] >= -1]
+    data = data.loc[data['Gross_profit'] <= 8]
     
-    data = data.loc[data['net income'] >= -5]
-    data = data.loc[data['net income'] <= 5]
+    data = data.loc[data['Net_income'] >= -5]
+    data = data.loc[data['Net_income'] <= 5]
     
-    data = data.loc[data['operational cash flow'] >= -2.5]
-    data = data.loc[data['operational cash flow'] <= 5]
+    data = data.loc[data['Operational_cash_flow'] >= -2.5]
+    data = data.loc[data['Operational_cash_flow'] <= 5]
     
-    data = data.loc[data['total assets'] >= -0.5]
-    data = data.loc[data['total assets'] <= 4]
+    data = data.loc[data['Assets'] >= -0.5]
+    data = data.loc[data['Assets'] <= 4]
     
     data = data.loc[data['PSR'] >= -0.5]
     data = data.loc[data['PSR'] <= 6]
     
-    data.to_hdf('dataWithOUTliers.hdf5', 'Datataset1/X')
+    data.to_hdf('dataWithOUTliers.hdf5', 'Datataset1/X', format = 'table')
 
 
 #data = data.loc[data['volatility 360 days'] <= 35]
@@ -108,8 +108,8 @@ if remove_outliers:
 #
 #text_file.close()
 
-anr = data['analyst rating']
-data = data.drop(['analyst rating'], axis=1)
+anr = data['ANR']
+data = data.drop(['ANR'], axis=1)
 features = data.columns.values.tolist()
 i=1
 
@@ -119,26 +119,27 @@ else:
     folder = 'plots with outliers'
     
 for item in features:
-    p = data[[item]].dropna().values
-    #min = np.percentile(p, 25)
-    #max = np.percentile(p, 75)
-    #print '%s values should be between %s and %s' % (item, 0, max)
-    pe = pd.concat([data[[item]], pd.DataFrame(anr, columns=['analyst rating'])], axis=1)
-    pe = pe[np.isfinite(pe[item])]
-    #pe = pe.loc[pe[item] <= max]
-    #pe = pe.loc[pe[item] >= min]
-    anr_slice = pe[['analyst rating']].values
-    pe = pe[[item]].values
-    fig = plt.figure(figsize=(7,7))
-    plt.ylabel('Analyst rating')
-    plt.xlabel(item)
-    # linregress needs one dimentional array - obtained through slicing
-    plt.scatter(pe, anr_slice, s=7)
-    slope, intercept, rvalue, pvalue, stderr = stats.linregress(pe[:,0], anr_slice[:,0])
-    plt.plot(pe, intercept + slope*pe, 'r', label='fitted line')
-    file_name = folder + '/anr_feature' + str(i)  + '.png'
-    i=i+1
-    plt.savefig(file_name, format='png')
+    if item != 'Sector':
+        p = data[[item]].dropna().values
+        #min = np.percentile(p, 25)
+        #max = np.percentile(p, 75)
+        #print '%s values should be between %s and %s' % (item, 0, max)
+        pe = pd.concat([data[[item]], pd.DataFrame(anr, columns=['ANR'])], axis=1)
+        pe = pe[np.isfinite(pe[item])]
+        #pe = pe.loc[pe[item] <= max]
+        #pe = pe.loc[pe[item] >= min]
+        anr_slice = pe[['ANR']].values
+        pe = pe[[item]].values
+        fig = plt.figure(figsize=(7,7))
+        plt.ylabel('Analyst rating')
+        plt.xlabel(item)
+        # linregress needs one dimentional array - obtained through slicing
+        plt.scatter(pe, anr_slice, s=7)
+        slope, intercept, rvalue, pvalue, stderr = stats.linregress(pe[:,0], anr_slice[:,0])
+        plt.plot(pe, intercept + slope*pe, 'r', label='fitted line')
+        file_name = folder + '/anr_feature' + str(i)  + '.png'
+        i=i+1
+        plt.savefig(file_name, format='png')
 
 plt.close()
     

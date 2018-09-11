@@ -34,22 +34,23 @@ def replace_nan(df):
 data = pd.read_excel('../../Data/BLB_values_SP1500_22feb.xlsx')
 
 
-numeric_all = data[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
-                            'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
-                            'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover',
-                            'revenu', 'gross profit', 'net income', 'operational cash flow',
-                            'total assets', 'analyst rating']]
-numeric_all_no_anr = data[['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days',
-                                   'return last 3 month', 'returns last 6 months', 'return last year', 'P/E', 'EPS',
-                                   'market cap', 'returns last 5 years', 'quick ratio', 'inventory turnover',
-                                   'revenu', 'gross profit', 'net income', 'operational cash flow',
-                                   'total assets']]
+numeric_all = data[['Sector', 'Adjusted_beta', 'Volatility_30', 'Volatility_90', 'Volatility_360',
+                            'Returns_3_months', 'Returns_6_months', 'Return_last_year', 'PE', 'EPS',
+                            'Market_cap', 'Returns_5_years', 'Quick_ratio', 'Inventory_turnover',
+                            'Revenue', 'Gross_profit', 'Net_income', 'Operational_cash_flow',
+                            'Assets', 'ANR']]
+numeric_all_no_anr = data[['Adjusted_beta', 'Volatility_30', 'Volatility_90', 'Volatility_360',
+                                   'Returns_3_months', 'Returns_6_months', 'Return_last_year', 'PE', 'EPS',
+                                   'Market_cap', 'Returns_5_years', 'Quick_ratio', 'Inventory_turnover',
+                                   'Revenue', 'Gross_profit', 'Net_income', 'Operational_cash_flow',
+                                   'Assets']]
 
 
-features = ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'return last 3 month',
-            'returns last 6 months', 'return last year', 'P/E', 'EPS', 'market cap', 'returns last 5 years',
-            'quick ratio', 'inventory turnover', 'revenu', 'gross profit', 'net income',
-            'operational cash flow', 'total assets']
+features = ['adjusted beta', 'volatility 30 days', 'volatility 90 days', 'volatility 360 days', 'Returns_3_months',
+            'Returns_6_months', 'Return_last_year', 'PE', 'EPS',
+            'Market_cap', 'Returns_5_years', 'Quick_ratio', 'Inventory_turnover',
+            'Revenue', 'Gross_profit', 'Net_income', 'Operational_cash_flow',
+            'Assets']
 
 ''' count nans per column '''
 nans_n = numeric_all.isnull().sum()
@@ -58,9 +59,9 @@ nans_n = numeric_all.isnull().sum()
 ''' scale out to market cap '''
 nov_processed = numeric_all.copy()
 
-feature_set = ['inventory turnover', 'revenu', 'gross profit', 
-               'net income', 'operational cash flow',
-                            'total assets']
+feature_set = ['Inventory_turnover', 'Revenue', 'Gross_profit', 
+               'Net_income', 'Operational_cash_flow',
+                            'Assets']
 nov_processed = ut.scaleOutMarketCap(nov_processed, feature_set)
 
 
@@ -75,25 +76,28 @@ nov_processed['size'] = ut.encodeMarketCap(nov_processed)
 #nov_processed = pd.concat([nov_processed, string_nov], axis=1)
 
 ''' create feature PSR '''
-nov_processed['PSR'] = nov_processed.loc[:,'market cap'] / nov_processed.loc[:,'revenu']
+nov_processed['PSR'] = nov_processed.loc[:,'Market_cap'] / nov_processed.loc[:,'Revenue']
 features = list(nov_processed.columns.values)
 
 
 ''' create y for regression'''
-y = nov_processed.loc[:, 'analyst rating']
+y = nov_processed.loc[:, 'ANR']
 #nov_processed = nov_processed.drop(['analyst rating'], axis=1)
 
 ''' create y for classification'''
 #y_class = pd.cut(y, bins=[0, 1.5, 2.5, 3.5, 4.5, 5], include_lowest=True, labels=['strong sell', 'sell', 'hold', 'buy', 'strong buy'])
 # some classifiers don't take sttrings for classes
-y_class = pd.cut(y, bins=[0, 1.5, 2.5, 3.5, 4.5, 5], include_lowest=True, labels=[1, 2, 3, 4, 5])
-y_classs = pd.DataFrame(y_class)
+
 
 ''' drop ANR from X '''
 nov_processed = nov_processed.fillna(0)
-nov_processed = nov_processed.loc[nov_processed['analyst rating'] > 0]
-y = nov_processed.loc[:, 'analyst rating']
-nov_processed = nov_processed.drop(['analyst rating'], axis=1)
+nov_processed = nov_processed.loc[nov_processed['ANR'] > 0]
+y = nov_processed.loc[:, 'ANR']
+
+y_class = pd.cut(y, bins=[0, 1, 2, 3, 4, 5], include_lowest=True, labels=[1, 2, 3, 4, 5])
+y_class = pd.DataFrame(y_class)
+
+nov_processed = nov_processed.drop(['ANR'], axis=1)
 
 ''' deal with missing values '''
 #y_class = y_class.fillna(1)
@@ -102,14 +106,17 @@ nov_processed = nov_processed.drop(['analyst rating'], axis=1)
 #imp = preprocessing.Imputer(missing_values='NaN', strategy='mean', axis=0)
 #imp.fit_transform(nov_processed)
 
+strings = nov_processed['Sector']
+nov_processed = nov_processed.drop('Sector', axis = 1)
+
 ''' scale '''
 if True:
-    nov_processed.loc[:,'market cap'] = nov_processed.loc[:,'market cap']/1000
-    nov_processed.loc[:,'revenu'] = nov_processed.loc[:,'revenu']/100
-    nov_processed.loc[:,'gross profit'] = nov_processed.loc[:,'gross profit']/100
-    nov_processed.loc[:,'net income'] = nov_processed.loc[:,'net income']/10
-    nov_processed.loc[:,'operational cash flow'] = nov_processed.loc[:,'operational cash flow']/100
-    nov_processed.loc[:,'total assets'] = nov_processed.loc[:,'total assets']/100
+    nov_processed.loc[:,'Market_cap'] = nov_processed.loc[:,'Market_cap']/1000
+    nov_processed.loc[:,'Revenue'] = nov_processed.loc[:,'Revenue']/100
+    nov_processed.loc[:,'Gross_profit'] = nov_processed.loc[:,'Gross_profit']/100
+    nov_processed.loc[:,'Net_income'] = nov_processed.loc[:,'Net_income']/10
+    nov_processed.loc[:,'Operational_cash_flow'] = nov_processed.loc[:,'Operational_cash_flow']/100
+    nov_processed.loc[:,'Assets'] = nov_processed.loc[:,'Assets']/100
     
 scaler = preprocessing.StandardScaler() # standard scaling
 #scaler = preprocessing.MaxAbsScaler() # scale to range [0, 1]
@@ -118,6 +125,6 @@ scaler = preprocessing.StandardScaler() # standard scaling
 #scaler = preprocessing.QuantileTransformer() #non-linear transformation
 #scaler = preprocessing. Normalizer()
 nov_processed = pd.DataFrame(scaler.fit_transform(nov_processed), columns=nov_processed.columns, index=nov_processed.index) 
-nov_processed = pd.concat([nov_processed, y], axis='columns')
-nov_processed.to_hdf('data.hdf5', 'Datataset1/X')
+nov_processed = pd.concat([strings, nov_processed, y_class], axis='columns')
+nov_processed.to_hdf('data.hdf5', 'Datataset1/X', format = "table")
 

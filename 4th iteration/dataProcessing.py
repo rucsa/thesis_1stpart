@@ -20,7 +20,7 @@ feature_set = ['Inventory_turnover', 'Revenue', 'Gross_profit',
                'Net_income', 'Operational_cash_flow',
                             'Assets']
 size = ut.encodeMarketCap(data)
-data = pd.concat([data, size], axis=1)
+
 data = ut.scaleOutMarketCap(data, feature_set)
 if False:
     data.loc[:,'Market_cap'] = data.loc[:,'Market_cap']/1000
@@ -42,7 +42,7 @@ if True:
 if False:
     encoded_sector = ut.encode_sector(data)
     data = data.drop('Sector', axis = 1)
-    data = pd.concat([data, encoded_sector], axis=1)
+
 
 #data = data.dropna(axis = 0, how = 'any')
 #df = data[['Inventory_turnover', 'Market_cap']].copy()
@@ -66,6 +66,9 @@ nans_n = data.isnull().sum()
 if False:
     scaler = preprocessing.StandardScaler() 
     data = pd.DataFrame(scaler.fit_transform(data), columns=data.columns, index=data.index) 
-    data = pd.concat([data, y], axis='columns')
-    
+
+data = pd.concat([data, size], axis=1)
+data = pd.concat([data, encoded_ethics, encoded_bribery], axis=1)
+data = pd.concat([data, encoded_sector], axis=1)
+data = pd.concat([data, y], axis='columns')
 data.to_hdf('data_for_portfolio_analysis.hdf5', 'Datataset1/X')
