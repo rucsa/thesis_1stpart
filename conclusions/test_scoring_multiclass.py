@@ -2,7 +2,7 @@
 """
 Created on Tue Jul 10 11:04:43 2018
 
-@author: RuxandraV
+@author: Ruxandra
 """
 
 def precision(y_true, y_pred):

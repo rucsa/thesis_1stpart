@@ -2,7 +2,7 @@
 """
 Created on Tue Jul 10 12:07:54 2018
 
-@author: RuxandraV
+@author: Ruxandra
 """
 from sklearn.metrics import f1_score
 from sklearn.svm import SVC
