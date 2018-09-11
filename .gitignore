@@ -1,5 +1,4 @@
 # ignore data files #
-
 .csv
 .png
 .PNG
@@ -7,3 +6,5 @@
 .txt
 .xlsx
 .tex
+.txt
+
