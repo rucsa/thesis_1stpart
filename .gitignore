@@ -1,4 +1,4 @@
 # ignore data files #
 
-*.csv
-*.txt
+.csv
+.txt
